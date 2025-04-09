@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { posts, settingsvariants } from "../../../utils/Constants";
+import { settingsvariants } from "../../../utils/Constants";
 import { motion } from "framer-motion";
 import {
   MessageCircle,
@@ -11,9 +11,13 @@ import {
   Bookmark,
 } from "lucide-react";
 import { formatTimestamp } from "../../../utils/helper";
+import { useGetData } from "../../../hooks/useGetData";
+import SpinnerFullPage from "../../../ui/SpinnerFullPage";
 
 function ForumFeed() {
   const [setSelectedPost] = useState(null);
+
+  const { data: forum, isLoading } = useGetData("forum");
   const [likedPosts, setLikedPosts] = useState(new Set());
   const [savedPosts, setSavedPosts] = useState(new Set());
   const toggleLike = (postId) => {
@@ -40,11 +44,12 @@ function ForumFeed() {
     });
   };
 
+  if (isLoading) return <SpinnerFullPage />;
   const { itemVariants, containerVariants } = settingsvariants;
 
   return (
     <motion.div variants={containerVariants} className="space-y-6">
-      {posts.map((post) => (
+      {forum?.map((post) => (
         <motion.div
           key={post.id}
           variants={itemVariants}

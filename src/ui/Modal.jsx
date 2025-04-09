@@ -34,11 +34,12 @@ function Window({ children, name }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 max-h-[40vh] my-auto backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50 p-4"
+      className="fixed inset-0 my-auto
+       backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50 p-4"
     >
       <div
         ref={ref}
-        className="relative bg-gray-50 dark:bg-gray-900  p-6 max-w-lg w-full rounded-xl shadow-2xl"
+        className="relative bg-gray-50 dark:bg-gray-900  max-h-[100vh]  p-6 max-w-lg w-full rounded-xl shadow-2xl"
       >
         <button onClick={close} className="absolute top-2 right-2.5">
           <X size={20} />

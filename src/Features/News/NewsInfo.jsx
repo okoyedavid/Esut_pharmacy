@@ -10,9 +10,10 @@ import {
   Ticket,
 } from "lucide-react";
 import Button from "../../ui/Button";
-import { updates } from "../../utils/Constants";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
+import { useGetData } from "../../hooks/useGetData";
+import SpinnerFullPage from "../../ui/SpinnerFullPage";
 
 function NewsInfo() {
   const [bookmarkedPosts, setBookmarkedPosts] = useState(new Set());
@@ -20,6 +21,10 @@ function NewsInfo() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const selectedCategory = searchParams.get("id") || "all";
+
+  const { data: updates, isLoading } = useGetData("news");
+
+  if (isLoading) return <SpinnerFullPage />;
 
   const update = updates.filter(
     (item) => item.id === Number(selectedCategory)

@@ -9,6 +9,7 @@ export async function signupUser({ name, email, password }) {
       data: {
         name,
         avatar: "",
+        level: "100lvl",
       },
     },
   });

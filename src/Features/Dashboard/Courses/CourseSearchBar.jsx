@@ -27,17 +27,17 @@ function CourseSearchBar() {
         <div className="flex flex-wrap gap-2 mb-4">
           {/* Level Selection */}
           <div className="flex gap-2">
-            {levels.map((level, index) => (
+            {levels.map((level) => (
               <button
-                key={index}
+                key={level.value}
                 onClick={() => setParams({ level: level })}
                 className={`px-2 py-1 sm:px-4 sm:py-2  rounded-lg text-sm font-medium transition-colors ${
-                  searchParams.get("level") === level
+                  searchParams.get("level") === level.value
                     ? "bg-blue-100 text-blue-600"
                     : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                 }`}
               >
-                {level} Level
+                {level.label} Level
               </button>
             ))}
           </div>

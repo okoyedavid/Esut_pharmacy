@@ -1,19 +1,24 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { settingsvariants, updates } from "../../utils/Constants";
+import { settingsvariants } from "../../utils/Constants";
 import { motion } from "framer-motion";
 import Button from "../../ui/Button";
+import SpinnerFullPage from "../../ui/SpinnerFullPage";
 import { Bookmark, Heart, MessageCircle, Share2 } from "lucide-react";
 import { useState } from "react";
+import { useGetData } from "../../hooks/useGetData";
 
 function NewsGrid() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const selectedCategory = searchParams.get("selected") || "all";
   const searchQuery = searchParams.get("query") || "";
+  const { data: updates, isLoading } = useGetData("news");
 
   const navigate = useNavigate();
   const [bookmarkedPosts, setBookmarkedPosts] = useState(new Set());
   const [likedPosts, setLikedPosts] = useState(new Set());
+
+  if (isLoading) return <SpinnerFullPage />;
 
   const filteredUpdates = updates.filter(
     (update) =>

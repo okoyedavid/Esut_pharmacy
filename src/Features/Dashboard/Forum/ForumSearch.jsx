@@ -25,6 +25,7 @@ function ForumSearch() {
     { id: "events", label: "Events", icon: Calendar },
     { id: "research", label: "Research", icon: Microscope },
   ];
+
   return (
     <motion.div variants={itemVariants} className="mb-8">
       <div className="bg-white rounded-xl shadow-sm p-4">

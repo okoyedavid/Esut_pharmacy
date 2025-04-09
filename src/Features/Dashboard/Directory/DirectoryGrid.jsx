@@ -1,16 +1,23 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Quote, Award } from "lucide-react";
+import {
+  Quote,
+  Award,
+  Instagram,
+  Linkedin,
+  Twitter,
+  Phone,
+  Mail,
+} from "lucide-react";
 import Button from "../../../ui/Button";
-import { facultyMembers, settingsvariants } from "../../../utils/Constants";
+import SpinnerFullPage from "../../../ui/SpinnerFullPage";
+import { settingsvariants } from "../../../utils/Constants";
 import { useState } from "react";
-import ExecutiveModal from "./DirectoryModal";
-import { useModal } from "../../../ui/Modal";
+import { useGetData } from "../../../hooks/useGetData";
 
 function DirectoryGrid() {
-  const [selectedExecutive, setSelectedExecutive] = useState(null);
   const [expandedCard, setExpandedCard] = useState(null);
   const { itemVariants, containerVariants } = settingsvariants;
-  const { open } = useModal();
+  const { data: executives, isLoading } = useGetData("excos");
 
   const expandCard = (id) => {
     if (expandedCard === id) {
@@ -20,24 +27,20 @@ function DirectoryGrid() {
     }
   };
 
-  function handleSelect(exec) {
-    setSelectedExecutive(exec);
-
-    open("Executives");
-  }
+  if (isLoading) return <SpinnerFullPage />;
   return (
     <motion.div
       variants={containerVariants}
       className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
     >
-      {facultyMembers.executives.map((executive) => (
+      {executives.map((executive) => (
         <motion.div
           key={executive.id}
           variants={itemVariants}
-          className={`bg-white rounded-xl shadow-sm overflow-hidden cursor-pointer transition-all duration-300 ${
+          className={`bg-white rounded-xl h-fit shadow-sm overflow-hidden cursor-pointer transition-all duration-300 ${
             expandedCard === executive.id ? "lg:col-span-2 lg:row-span-2" : ""
           }`}
-          onClick={() => handleSelect(executive)}
+          onClick={() => setExpandedCard(executive.name)}
         >
           <div className="relative">
             <img
@@ -46,11 +49,7 @@ function DirectoryGrid() {
               className="w-full h-48 object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-            <div className="absolute top-4 right-4">
-              {/* <div className="p-2 bg-white/20 backdrop-blur-sm rounded-full">
-                <executive.icon className="h-5 w-5 text-white" />
-              </div> */}
-            </div>
+            <div className="absolute top-4 right-4"></div>
             <div className="absolute bottom-4 left-4 text-white">
               <h3 className="font-bold text-lg">{executive.name}</h3>
             </div>
@@ -68,25 +67,18 @@ function DirectoryGrid() {
               <Button
                 variant="secondary"
                 size="sm"
-                icon={<Mail className="h-4 w-4" />}
-              >
-                Contact
-              </Button>
-              <Button
-                variant="secondary"
-                size="sm"
                 icon={<Quote className="h-4 w-4" />}
                 onClick={(e) => {
                   e.stopPropagation();
                   expandCard(executive.id);
                 }}
               >
-                {expandedCard === executive.id ? "Less Info" : "More Info"}
+                {expandedCard === executive.name ? "Less Info" : "More Info"}
               </Button>
             </div>
 
             <AnimatePresence>
-              {expandedCard === executive.id && (
+              {expandedCard === executive.name && (
                 <motion.div
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
@@ -100,15 +92,59 @@ function DirectoryGrid() {
                     <div>
                       <h4 className="font-semibold mb-2">Achievements</h4>
                       <ul className="space-y-2">
-                        {executive.achievements.map((achievement, index) => (
-                          <li
-                            key={index}
-                            className="flex items-center gap-2 text-gray-600"
-                          >
-                            <Award className="h-4 w-4 text-yellow-500" />
-                            {achievement}
-                          </li>
-                        ))}
+                        {executive.achievements.awards.map(
+                          (achievement, index) => (
+                            <li
+                              key={index}
+                              className="flex items-center gap-2 text-gray-600"
+                            >
+                              <Award className="h-4 w-4 text-yellow-500" />
+                              {achievement}
+                            </li>
+                          )
+                        )}
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                          <div className="space-y-2">
+                            <h3 className="font-semibold mb-3">
+                              Contact Information
+                            </h3>
+                            <p className="flex items-center gap-2 text-gray-600">
+                              <Mail className="h-4 w-4" />
+                              {executive.contacts.email}
+                            </p>
+                            <p className="flex items-center gap-2 text-gray-600">
+                              <Phone className="h-4 w-4" />
+                              {executive.contacts.phone}
+                            </p>
+                          </div>
+                          <div className="space-y-2">
+                            <h3 className="font-semibold mb-3">Social Media</h3>
+                            <div className="flex gap-2">
+                              <Button
+                                variant="secondary"
+                                size="sm"
+                                icon={<Twitter className="h-4 w-4" />}
+                              >
+                                Twitter
+                              </Button>
+                              <Button
+                                variant="secondary"
+                                size="sm"
+                                icon={<Linkedin className="h-4 w-4" />}
+                              >
+                                LinkedIn
+                              </Button>
+                              <Button
+                                variant="secondary"
+                                size="sm"
+                                icon={<Instagram className="h-4 w-4" />}
+                              >
+                                Instagram
+                              </Button>
+                            </div>
+                          </div>
+                        </div>
                       </ul>
                     </div>
                   </div>
@@ -118,7 +154,6 @@ function DirectoryGrid() {
           </div>
         </motion.div>
       ))}
-      <ExecutiveModal executive={selectedExecutive} />
     </motion.div>
   );
 }

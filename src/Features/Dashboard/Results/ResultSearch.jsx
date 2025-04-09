@@ -31,15 +31,15 @@ function ResultsSearch() {
         <div className="flex gap-2">
           {levels.map((currentlevel) => (
             <button
-              key={currentlevel}
+              key={currentlevel.value}
               onClick={() => setParams({ level: currentlevel })}
               className={`px-2 sm:px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                level === currentlevel
+                level === currentlevel.value
                   ? "bg-blue-100 text-blue-600"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
               }`}
             >
-              {currentlevel} Level
+              {currentlevel.label}
             </button>
           ))}
         </div>

@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import ProtectedRoutes from "../../ui/ProtectedRoutes.jsx";
-import Dashboard from "../../Features/Dashboard/Dashboard.jsx";
+import Dashboard from "../../Features/Dashboard/Dashboard/Dashboard.jsx";
 import HomeLayout from "./HomeLayout.jsx";
 import AuthPage from "../../Features/Auth/Auth.jsx";
 import About from "../About.jsx";

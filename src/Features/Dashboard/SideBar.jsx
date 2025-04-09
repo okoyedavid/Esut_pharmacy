@@ -35,7 +35,7 @@ function SideBar({ isOpen, onClose }) {
       label: "Dashboard",
     },
     {
-      path: `/dashboard/courses?level=${user.user_metadata.level.match(
+      path: `/dashboard/courses?level=${user.user_metadata?.level?.match(
         /\d+(\.\d+)?/g
       )}&semester=first`,
       icon: BookOpen,
@@ -43,7 +43,7 @@ function SideBar({ isOpen, onClose }) {
     },
     { path: "/dashboard/resources", icon: Library, label: "Resources" },
     {
-      path: `/dashboard/results?level=${user.user_metadata.level.match(
+      path: `/dashboard/results?level=${user.user_metadata?.level?.match(
         /\d+(\.\d+)?/g
       )}&semester=first`,
       icon: FileText,
