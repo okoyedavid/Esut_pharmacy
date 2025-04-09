@@ -6,7 +6,7 @@ function PageMotion({ children }) {
   return (
     <motion.div
       variants={containerVariants}
-      className="max-w-6xl mx-auto bg-white md:p-8 p-2 dark:bg-gray-900 rounded-xl min-h-screen"
+      className="md:max-w-6xl mx-auto pt-8 max-w-[100vw] bg-white md:p-8 p-2 dark:bg-gray-900 rounded-xl min-h-screen"
     >
       {children}
     </motion.div>

@@ -7,11 +7,14 @@ import { calculateGradePoint } from "../../../utils/helper";
 import { getData, insertData, updateTable } from "../../../services/backend";
 import { useGetUser } from "../../../hooks/useGetUser";
 import { useMutate } from "../../../hooks/useMutate";
+import { useQueryClient } from "@tanstack/react-query";
 
 const ResultModal = ({ course }) => {
   const { data: user } = useGetUser();
   const { close } = useModal();
   const [scores, setScores] = useState([]);
+
+  const queryClient = useQueryClient();
 
   async function handleSave() {
     const data = await getData("assessments", {
@@ -40,6 +43,18 @@ const ResultModal = ({ course }) => {
   }
 
   const { mutate, isPending } = useMutate(handleSave, "update assessments");
+
+  function recordResult() {
+    mutate(
+      {},
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ["assessments"] });
+          close();
+        },
+      }
+    );
+  }
 
   useEffect(() => {
     if (course) {
@@ -143,7 +158,7 @@ const ResultModal = ({ course }) => {
             <Button
               variant="primary"
               isLoading={isPending}
-              onClick={mutate}
+              onClick={recordResult}
               icon={<Save className="h-4 w-4" />}
             >
               Save Changes

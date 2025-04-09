@@ -7,7 +7,9 @@ function Wrapper({ children, light = false }) {
     );
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-900 p-6 rounded-lg">{children}</div>
+    <div className="bg-gray-50 dark:bg-gray-900 sm:p-6 p-4 shadow-md rounded-lg">
+      {children}
+    </div>
   );
 }
 

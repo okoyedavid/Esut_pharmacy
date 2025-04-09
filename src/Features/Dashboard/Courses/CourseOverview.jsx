@@ -36,7 +36,7 @@ function CourseOverview() {
   return (
     <motion.div
       variants={settingsvariants.itemVariants}
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
+      className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-6"
     >
       <Wrapper>
         <div className="flex items-center justify-between mb-4">
@@ -57,7 +57,6 @@ function CourseOverview() {
           <span className="text-sm font-medium text-green-600">{standing}</span>
         </div>
         <h3 className="text-xl font-bold mb-1">{classification}</h3>
-        <p className="text-gray-600 text-sm">Academic Classification</p>
       </Wrapper>
 
       <Wrapper>
@@ -85,7 +84,7 @@ function CourseOverview() {
       </Wrapper>
 
       {totalUnits !== threshold_unit && (
-        <p className="text-sm text-yellow-700 bg-yellow-100 p-2 rounded-md mt-4 border border-yellow-300">
+        <p className="text-sm col-span-2 text-yellow-700 bg-yellow-100 p-2 rounded-md mt-4 border border-yellow-300">
           CGPA is based on filled course grades. To view a complete cumulative
           CGPA, fill in all course grades from previous levels.
         </p>

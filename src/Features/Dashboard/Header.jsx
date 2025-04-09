@@ -7,7 +7,7 @@ function Header({ onToggleSidebar }) {
   const user = data?.user_metadata;
 
   return (
-    <header className="shadow-sm dark:shadow-md sm:relative bg-gray-50 sm:w-auto fixed w-full z-40">
+    <header className="shadow-sm dark:shadow-md sm:relative bg-white sm:w-auto fixed w-full z-40">
       <div className="flex items-center md:justify-between px-4 md:px-8 py-4">
         <button onClick={onToggleSidebar} className="lg:hidden">
           <Menu className="h-6 w-6 text-gray-700 dark:text-gray-300" />

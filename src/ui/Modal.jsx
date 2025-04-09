@@ -34,7 +34,7 @@ function Window({ children, name }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50 p-4"
+      className="fixed inset-0 max-h-[40vh] my-auto backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50 p-4"
     >
       <div
         ref={ref}

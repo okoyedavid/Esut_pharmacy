@@ -1,44 +1,44 @@
 import { Award, BookOpen, GraduationCap } from "lucide-react";
-import { useSearchParams } from "react-router-dom";
-import { resultsData, settingsvariants } from "../../../utils/Constants";
+import { settingsvariants } from "../../../utils/Constants";
 import { calculateGPA } from "../../../utils/helper";
 import { motion } from "framer-motion";
+import Wrapper from "../../../ui/Wrapper";
+import { useCourses } from "../../../context/CourseProvider";
 
+import { getClassification } from "../../../utils/helper";
 function ResultCards() {
-  const [searchParams] = useSearchParams();
+  const { result } = useCourses();
 
-  const semester = searchParams.get("semester") || "first";
-
+  const GPA = calculateGPA(result);
+  const { classification, standing } = getClassification(GPA);
   return (
     <motion.div
       variants={settingsvariants.itemVariants}
-      className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"
+      className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-6"
     >
-      <div className="rounded-xl shadow-sm dark:bg-gray-800 p-6">
+      <Wrapper>
         <div className="flex items-center justify-between mb-4">
           <div className="p-3 bg-blue-100 rounded-lg">
             <GraduationCap className="h-6 w-6 text-blue-600" />
           </div>
           <span className="text-sm font-medium text-blue-600">Current GPA</span>
         </div>
-        <h3 className="text-2xl font-bold mb-1">
-          {calculateGPA(resultsData[400][semester])}
-        </h3>
+        <h3 className="text-2xl font-bold mb-1">{GPA}</h3>
         <p className="text-gray-600 text-sm">Semester GPA</p>
-      </div>
+      </Wrapper>
 
-      <div className="rounded-xl shadow-sm p-6 dark:bg-gray-800">
+      <Wrapper>
         <div className="flex items-center justify-between mb-4">
           <div className="p-3 bg-green-100 rounded-lg">
             <Award className="h-6 w-6 text-green-600" />
           </div>
-          <span className="text-sm font-medium text-green-600">Standing</span>
+          <span className="text-sm font-medium text-green-600">{standing}</span>
         </div>
-        <h3 className="text-xl font-bold mb-1">First Class</h3>
+        <h3 className="text-xl font-bold mb-1">{classification}</h3>
         <p className="text-gray-600 text-sm">Academic Standing</p>
-      </div>
+      </Wrapper>
 
-      <div className="rounded-xl  dark:bg-gray-800 shadow-sm p-6">
+      <Wrapper>
         <div className=" flex items-center justify-between mb-4">
           <div className="p-3 bg-purple-100 rounded-lg">
             <BookOpen className="h-6 w-6 text-purple-600" />
@@ -48,13 +48,10 @@ function ResultCards() {
           </span>
         </div>
         <h3 className="text-2xl font-bold mb-1">
-          {resultsData[400][semester].reduce(
-            (acc, course) => acc + course.units,
-            0
-          )}
+          {result.reduce((acc, course) => acc + course.units, 0)}
         </h3>
         <p className="text-gray-600 text-sm">Credit Units</p>
-      </div>
+      </Wrapper>
     </motion.div>
   );
 }

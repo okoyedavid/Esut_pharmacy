@@ -1,15 +1,9 @@
 import {
-  Award,
-  Briefcase,
   FlaskConical,
-  GraduationCap,
-  Heart,
   Leaf,
-  Lightbulb,
   Microscope,
   PillIcon,
   Stethoscope,
-  Users,
 } from "lucide-react";
 
 export const settingsvariants = {
@@ -205,36 +199,132 @@ const facultyMembers = {
       image:
         "https://qqhuguvunfliberzvjhy.supabase.co/storage/v1/object/public/Excos/gentility.jpg?t=2024-10-27T11%3A47%3A15.031Z",
       name: "IGATTA JAMES CHIKAMSO",
+      level: "500",
+      quote:
+        "Together, we can build a stronger academic community that empowers every student to reach their full potential.",
+      bio: "Leading with passion and dedication to create positive change in our faculty.",
+      contacts: {
+        email: "sarah.j@pharmacy.edu",
+        phone: "+234 801 234 5678",
+        twitter: "sarahj_pharma",
+        linkedin: "sarahjohnson",
+        instagram: "sarah.pharma",
+      },
+      achievements: [
+        "Academic Excellence Award 2023",
+        "Student Leadership Recognition",
+        "Community Service Award",
+      ],
       role: "PANS PRESIDENT",
     },
     {
       image:
         "https://qqhuguvunfliberzvjhy.supabase.co/storage/v1/object/public/Excos/deborah.jpg?t=2024-10-27T11%3A47%3A57.826Z",
       name: "ORJI DEBORAH CHIMUANYA",
+      level: "500",
+      quote:
+        "Together, we can build a stronger academic community that empowers every student to reach their full potential.",
+      bio: "Leading with passion and dedication to create positive change in our faculty.",
+      contacts: {
+        email: "sarah.j@pharmacy.edu",
+        phone: "+234 801 234 5678",
+        twitter: "sarahj_pharma",
+        linkedin: "sarahjohnson",
+        instagram: "sarah.pharma",
+      },
+      achievements: [
+        "Academic Excellence Award 2023",
+        "Student Leadership Recognition",
+        "Community Service Award",
+      ],
       role: "PANS VICE PRESIDENT",
     },
     {
       image:
         "https://qqhuguvunfliberzvjhy.supabase.co/storage/v1/object/public/Excos/nkwocha.jpg?t=2024-10-27T11%3A47%3A35.002Z",
       name: "NKWOCHA SUCCESS DABERECHUKWU",
+      level: "500",
+      quote:
+        "Together, we can build a stronger academic community that empowers every student to reach their full potential.",
+      bio: "Leading with passion and dedication to create positive change in our faculty.",
+      contacts: {
+        email: "sarah.j@pharmacy.edu",
+        phone: "+234 801 234 5678",
+        twitter: "sarahj_pharma",
+        linkedin: "sarahjohnson",
+        instagram: "sarah.pharma",
+      },
+      achievements: [
+        "Academic Excellence Award 2023",
+        "Student Leadership Recognition",
+        "Community Service Award",
+      ],
       role: "GENERAL SECRETARY",
     },
     {
       image:
         "https://qqhuguvunfliberzvjhy.supabase.co/storage/v1/object/public/Excos/ebubue.jpg?t=2024-10-27T11%3A52%3A56.046Z",
       name: "OGBOZOR EBUBE EMMANUEL",
+      level: "500",
+      quote:
+        "Together, we can build a stronger academic community that empowers every student to reach their full potential.",
+      bio: "Leading with passion and dedication to create positive change in our faculty.",
+      contacts: {
+        email: "sarah.j@pharmacy.edu",
+        phone: "+234 801 234 5678",
+        twitter: "sarahj_pharma",
+        linkedin: "sarahjohnson",
+        instagram: "sarah.pharma",
+      },
+      achievements: [
+        "Academic Excellence Award 2023",
+        "Student Leadership Recognition",
+        "Community Service Award",
+      ],
       role: "ASSt, GENERAL SECRETARY",
     },
     {
       image:
         "https://qqhuguvunfliberzvjhy.supabase.co/storage/v1/object/public/Excos/onyishi.jpg?t=2024-10-27T11%3A48%3A54.788Z",
       name: "ONYISHI CHARLES NNANYEREUGO",
+      level: "500",
+      quote:
+        "Together, we can build a stronger academic community that empowers every student to reach their full potential.",
+      bio: "Leading with passion and dedication to create positive change in our faculty.",
+      contacts: {
+        email: "sarah.j@pharmacy.edu",
+        phone: "+234 801 234 5678",
+        twitter: "sarahj_pharma",
+        linkedin: "sarahjohnson",
+        instagram: "sarah.pharma",
+      },
+      achievements: [
+        "Academic Excellence Award 2023",
+        "Student Leadership Recognition",
+        "Community Service Award",
+      ],
       role: "FINANCIAL SECRETARY",
     },
     {
       image:
         "https://qqhuguvunfliberzvjhy.supabase.co/storage/v1/object/public/Excos/chisom.jpg?t=2024-10-27T11%3A27%3A38.154Z",
       name: "ABARA CHISOM GABRIEl",
+      level: "500",
+      quote:
+        "Together, we can build a stronger academic community that empowers every student to reach their full potential.",
+      bio: "Leading with passion and dedication to create positive change in our faculty.",
+      contacts: {
+        email: "sarah.j@pharmacy.edu",
+        phone: "+234 801 234 5678",
+        twitter: "sarahj_pharma",
+        linkedin: "sarahjohnson",
+        instagram: "sarah.pharma",
+      },
+      achievements: [
+        "Academic Excellence Award 2023",
+        "Student Leadership Recognition",
+        "Community Service Award",
+      ],
       role: "PUBLIC RELATIONS OFFICER",
     },
 
@@ -242,6 +332,22 @@ const facultyMembers = {
       image:
         "https://qqhuguvunfliberzvjhy.supabase.co/storage/v1/object/public/Excos/vivian.jpg?t=2024-10-27T11%3A48%3A26.004Z",
       name: "EKOH VIVIAN ONYINYECHUKWU",
+      level: "500",
+      quote:
+        "Together, we can build a stronger academic community that empowers every student to reach their full potential.",
+      bio: "Leading with passion and dedication to create positive change in our faculty.",
+      contacts: {
+        email: "sarah.j@pharmacy.edu",
+        phone: "+234 801 234 5678",
+        twitter: "sarahj_pharma",
+        linkedin: "sarahjohnson",
+        instagram: "sarah.pharma",
+      },
+      achievements: [
+        "Academic Excellence Award 2023",
+        "Student Leadership Recognition",
+        "Community Service Award",
+      ],
       role: "DIRECTOR OF SOCIALS",
     },
 
@@ -249,6 +355,22 @@ const facultyMembers = {
       image:
         "https://qqhuguvunfliberzvjhy.supabase.co/storage/v1/object/public/Excos/kenneth.jpg?t=2024-10-27T11%3A54%3A19.824Z",
       name: "OBETTA OLUCHUKWU KENNETH",
+      level: "500",
+      quote:
+        "Together, we can build a stronger academic community that empowers every student to reach their full potential.",
+      bio: "Leading with passion and dedication to create positive change in our faculty.",
+      contacts: {
+        email: "sarah.j@pharmacy.edu",
+        phone: "+234 801 234 5678",
+        twitter: "sarahj_pharma",
+        linkedin: "sarahjohnson",
+        instagram: "sarah.pharma",
+      },
+      achievements: [
+        "Academic Excellence Award 2023",
+        "Student Leadership Recognition",
+        "Community Service Award",
+      ],
       role: "ASST. DIRECTOR OF SOCIALS",
     },
 
@@ -256,6 +378,22 @@ const facultyMembers = {
       image:
         "https://qqhuguvunfliberzvjhy.supabase.co/storage/v1/object/public/Excos/nnabchi.jpg",
       name: "NNABCHI CHISOM NNAMDI",
+      level: "500",
+      quote:
+        "Together, we can build a stronger academic community that empowers every student to reach their full potential.",
+      bio: "Leading with passion and dedication to create positive change in our faculty.",
+      contacts: {
+        email: "sarah.j@pharmacy.edu",
+        phone: "+234 801 234 5678",
+        twitter: "sarahj_pharma",
+        linkedin: "sarahjohnson",
+        instagram: "sarah.pharma",
+      },
+      achievements: [
+        "Academic Excellence Award 2023",
+        "Student Leadership Recognition",
+        "Community Service Award",
+      ],
       role: "LIBRARIAN",
     },
 
@@ -263,6 +401,22 @@ const facultyMembers = {
       image:
         "https://qqhuguvunfliberzvjhy.supabase.co/storage/v1/object/public/Excos/akosa.jpg?t=2024-10-27T11%3A58%3A32.137Z",
       name: "AKOSA STANLEY",
+      level: "500",
+      quote:
+        "Together, we can build a stronger academic community that empowers every student to reach their full potential.",
+      bio: "Leading with passion and dedication to create positive change in our faculty.",
+      contacts: {
+        email: "sarah.j@pharmacy.edu",
+        phone: "+234 801 234 5678",
+        twitter: "sarahj_pharma",
+        linkedin: "sarahjohnson",
+        instagram: "sarah.pharma",
+      },
+      achievements: [
+        "Academic Excellence Award 2023",
+        "Student Leadership Recognition",
+        "Community Service Award",
+      ],
       role: "DIRECTOR OF SPORTS",
     },
 
@@ -270,6 +424,22 @@ const facultyMembers = {
       image:
         "https://qqhuguvunfliberzvjhy.supabase.co/storage/v1/object/public/Excos/franklyn.jpg?t=2024-10-27T11%3A49%3A35.633Z",
       name: "EDOMOBI CHIDUBEM FRANKLYN",
+      level: "500",
+      quote:
+        "Together, we can build a stronger academic community that empowers every student to reach their full potential.",
+      bio: "Leading with passion and dedication to create positive change in our faculty.",
+      contacts: {
+        email: "sarah.j@pharmacy.edu",
+        phone: "+234 801 234 5678",
+        twitter: "sarahj_pharma",
+        linkedin: "sarahjohnson",
+        instagram: "sarah.pharma",
+      },
+      achievements: [
+        "Academic Excellence Award 2023",
+        "Student Leadership Recognition",
+        "Community Service Award",
+      ],
       role: "ASST. DIRECTOR OF SPORTS",
     },
 
@@ -277,6 +447,22 @@ const facultyMembers = {
       image:
         "https://qqhuguvunfliberzvjhy.supabase.co/storage/v1/object/public/Excos/jeremiah.jpg?t=2024-10-27T11%3A50%3A07.065Z",
       name: "ONU JEREMIAH CHISOM",
+      level: "500",
+      quote:
+        "Together, we can build a stronger academic community that empowers every student to reach their full potential.",
+      bio: "Leading with passion and dedication to create positive change in our faculty.",
+      contacts: {
+        email: "sarah.j@pharmacy.edu",
+        phone: "+234 801 234 5678",
+        twitter: "sarahj_pharma",
+        linkedin: "sarahjohnson",
+        instagram: "sarah.pharma",
+      },
+      achievements: [
+        "Academic Excellence Award 2023",
+        "Student Leadership Recognition",
+        "Community Service Award",
+      ],
       role: "EDITOR-IN-CHIEF",
     },
 
@@ -284,72 +470,23 @@ const facultyMembers = {
       image:
         "https://qqhuguvunfliberzvjhy.supabase.co/storage/v1/object/public/Excos/michael.jpg?t=2024-10-27T11%3A50%3A54.951Z",
       name: "ONYEMAECHI MICHAEL ONYEMAECHI",
+      level: "500",
+      quote:
+        "Together, we can build a stronger academic community that empowers every student to reach their full potential.",
+      bio: "Leading with passion and dedication to create positive change in our faculty.",
+      contacts: {
+        email: "sarah.j@pharmacy.edu",
+        phone: "+234 801 234 5678",
+        twitter: "sarahj_pharma",
+        linkedin: "sarahjohnson",
+        instagram: "sarah.pharma",
+      },
+      achievements: [
+        "Academic Excellence Award 2023",
+        "Student Leadership Recognition",
+        "Community Service Award",
+      ],
       role: "TREASURER",
-    },
-  ],
-  hods: [
-    {
-      name: "Dr. Michael Brown",
-      role: "Head of Pharmacology",
-      image:
-        "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=500",
-      quote: "Advancing pharmaceutical research.",
-      linkedin: "https://linkedin.com",
-      twitter: "https://twitter.com",
-      email: "michael.brown@pharmacy.edu",
-    },
-    {
-      name: "Dr. Emily Davis",
-      role: "Head of Clinical Pharmacy",
-      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500",
-      quote: "Bridging theory and practice.",
-      linkedin: "https://linkedin.com",
-      twitter: "https://twitter.com",
-      email: "emily.davis@pharmacy.edu",
-    },
-  ],
-  lecturers: [
-    {
-      name: "Prof. Robert Wilson",
-      role: "Senior Lecturer",
-      image:
-        "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=500",
-      quote: "Inspiring the next generation.",
-      linkedin: "https://linkedin.com",
-      twitter: "https://twitter.com",
-      email: "robert.wilson@pharmacy.edu",
-    },
-    {
-      name: "Dr. Lisa Anderson",
-      role: "Lecturer",
-      image:
-        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500",
-      quote: "Making complex concepts simple.",
-      linkedin: "https://linkedin.com",
-      twitter: "https://twitter.com",
-      email: "lisa.anderson@pharmacy.edu",
-    },
-  ],
-  labTechs: [
-    {
-      name: "Alex Martinez",
-      role: "Senior Lab Technician",
-      image:
-        "https://images.unsplash.com/photo-1581093458791-4b041a98425f?w=500",
-      quote: "Ensuring lab safety and efficiency.",
-      linkedin: "https://linkedin.com",
-      twitter: "https://twitter.com",
-      email: "alex.martinez@pharmacy.edu",
-    },
-    {
-      name: "Emma Thompson",
-      role: "Lab Technician",
-      image:
-        "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500",
-      quote: "Supporting research excellence.",
-      linkedin: "https://linkedin.com",
-      twitter: "https://twitter.com",
-      email: "emma.thompson@pharmacy.edu",
     },
   ],
 };
@@ -505,231 +642,6 @@ export {
   forumPosts,
   sampleCourses,
 };
-
-export const resultsData = {
-  400: {
-    first: [
-      {
-        id: 1,
-        code: "PCL 401",
-        title: "Clinical Pharmacy",
-        units: 3,
-        grade: "A",
-        level: "400",
-        progress: 85,
-        status: "ongoing",
-        lecturer: "Dr. Smith Johnson",
-        description:
-          "Introduction to clinical pharmacy practice and patient care",
-        prerequisites: ["PCL 301", "PCL 302"],
-        assessments: [
-          { type: "Quiz", score: 18, total: 30 },
-          { type: "Exam", score: 25, total: 70 },
-        ],
-      },
-      {
-        id: 2,
-        code: "PCL 403",
-        title: "Pharmaceutical Technology",
-        units: 4,
-        grade: "B",
-        level: "400",
-        progress: 75,
-        lecturer: "Prof. Sarah Williams",
-        description: "Advanced pharmaceutical manufacturing processes",
-        assessments: [
-          { type: "Quiz", score: 22, total: 30 },
-          { type: "Exam", score: 45, total: 70 },
-        ],
-      },
-    ],
-    second: [
-      {
-        id: 3,
-        code: "PCL 402",
-        title: "Pharmacology",
-        units: 3,
-        grade: "A",
-        level: "400",
-        progress: 90,
-        lecturer: "Dr. Michael Brown",
-        description: "Study of drug actions and effects on living systems",
-        assessments: [
-          { type: "Quiz", score: 25, total: 30 },
-          { type: "Exam", score: 60, total: 70 },
-        ],
-      },
-      {
-        id: 4,
-        code: "PCL 404",
-        title: "Medicinal Chemistry",
-        department: "Pharmacognosy",
-        units: 3,
-        grade: "B",
-        level: "400",
-        progress: 80,
-        lecturer: "Dr. Emily Chen",
-        description: "Study of chemical properties of drugs",
-        assessments: [
-          { type: "Quiz", score: 20, total: 30 },
-          { type: "Exam", score: 50, total: 70 },
-        ],
-      },
-    ],
-  },
-};
-
-export const executives = [
-  {
-    id: 1,
-    name: "Sarah Johnson",
-    role: "President",
-    department: "Clinical Pharmacy",
-    level: "500",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80",
-    quote:
-      "Together, we can build a stronger academic community that empowers every student to reach their full potential.",
-    bio: "Leading with passion and dedication to create positive change in our faculty.",
-    contacts: {
-      email: "sarah.j@pharmacy.edu",
-      phone: "+234 801 234 5678",
-      twitter: "sarahj_pharma",
-      linkedin: "sarahjohnson",
-      instagram: "sarah.pharma",
-    },
-    achievements: [
-      "Academic Excellence Award 2023",
-      "Student Leadership Recognition",
-      "Community Service Award",
-    ],
-    icon: Award,
-  },
-  {
-    id: 2,
-    name: "Michael Chen",
-    role: "Vice President",
-    department: "Pharmaceutical Chemistry",
-    level: "500",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80",
-    quote:
-      "Innovation and collaboration are the keys to advancing pharmaceutical education.",
-    bio: "Dedicated to bridging the gap between students and faculty administration.",
-    contacts: {
-      email: "michael.c@pharmacy.edu",
-      phone: "+234 802 345 6789",
-      twitter: "mchenpharm",
-      linkedin: "michaelchen",
-      instagram: "mike.pharma",
-    },
-    achievements: [
-      "Research Excellence Award",
-      "Leadership Workshop Facilitator",
-      "Mentorship Program Lead",
-    ],
-    icon: Users,
-  },
-  {
-    id: 3,
-    name: "Amina Ibrahim",
-    role: "General Secretary",
-    department: "Pharmaceutics",
-    level: "400",
-    image:
-      "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&q=80",
-    quote:
-      "Effective communication and organization are vital for student success.",
-    bio: "Ensuring transparent and efficient administration of student affairs.",
-    contacts: {
-      email: "amina.i@pharmacy.edu",
-      phone: "+234 803 456 7890",
-      twitter: "aminai_pharm",
-      linkedin: "aminaibrahim",
-      instagram: "amina.pharma",
-    },
-    achievements: [
-      "Best Class Representative 2023",
-      "Documentation Excellence Award",
-      "Student Council Recognition",
-    ],
-    icon: Briefcase,
-  },
-  {
-    id: 4,
-    name: "David Okonkwo",
-    role: "Academic Coordinator",
-    department: "Pharmacology",
-    level: "400",
-    image:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80",
-    quote: "Every student deserves the opportunity to excel academically.",
-    bio: "Working to enhance the academic experience of all pharmacy students.",
-    contacts: {
-      email: "david.o@pharmacy.edu",
-      phone: "+234 804 567 8901",
-      twitter: "david_academic",
-      linkedin: "davidokonkwo",
-      instagram: "david.pharma",
-    },
-    achievements: [
-      "Tutorial Program Coordinator",
-      "Academic Support Initiative Lead",
-      "Peer Mentoring Award",
-    ],
-    icon: GraduationCap,
-  },
-  {
-    id: 5,
-    name: "Grace Adebayo",
-    role: "Social Director",
-    department: "Pharmacognosy",
-    level: "300",
-    image:
-      "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80",
-    quote:
-      "Creating memorable experiences that bring our pharmacy family together.",
-    bio: "Passionate about fostering community and connection through events.",
-    contacts: {
-      email: "grace.a@pharmacy.edu",
-      phone: "+234 805 678 9012",
-      twitter: "grace_social",
-      linkedin: "graceadebayo",
-      instagram: "grace.pharma",
-    },
-    achievements: [
-      "Best Event Organizer 2023",
-      "Cultural Day Coordinator",
-      "Student Engagement Award",
-    ],
-    icon: Heart,
-  },
-  {
-    id: 6,
-    name: "Joshua Nnamdi",
-    role: "Innovation Director",
-    department: "Pharmaceutical Microbiology",
-    level: "400",
-    image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80",
-    quote:
-      "Embracing technology and innovation to prepare for the future of pharmacy.",
-    bio: "Leading technological initiatives and digital transformation.",
-    contacts: {
-      email: "joshua.n@pharmacy.edu",
-      phone: "+234 806 789 0123",
-      twitter: "josh_innovate",
-      linkedin: "joshuannamdi",
-      instagram: "josh.pharma",
-    },
-    achievements: [
-      "Tech Innovation Award",
-      "Digital Learning Initiative Lead",
-      "Student App Developer",
-    ],
-    icon: Lightbulb,
-  },
-];
 
 export const departments = [
   { id: "pharmaceutics", name: "Pharmaceutics", icon: FlaskConical },

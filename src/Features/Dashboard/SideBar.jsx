@@ -76,11 +76,11 @@ function SideBar({ isOpen, onClose }) {
             animate={{ x: 0 }}
             exit={{ x: -300 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className={`fixed z-50 lg:static lg:block top-0 left-0 h-full w-64 
+            className={`fixed bg-white z-50 lg:static lg:block top-0 left-0 h-full w-64 
              shadow-lg ${!isOpen && "hidden lg:block"}
             `}
           >
-            <div className="p-4">
+            <div className="p-4 ">
               <div className="flex items-center gap-3 mb-8">
                 <img src="/logo.png" className="h-8 w-8" />
                 <h1 className="text-xl font-bold text-gray-800 dark:text-white">
@@ -90,7 +90,8 @@ function SideBar({ isOpen, onClose }) {
 
               <div className="space-y-2">
                 {sidebarLinks.map((link, index) => {
-                  const isActive = link.path === path;
+                  const isActive = link.path.includes(path.split("/")[2]);
+
                   return (
                     <div key={index} onClick={() => handleClick(link)}>
                       <motion.button

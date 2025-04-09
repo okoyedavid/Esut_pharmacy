@@ -1,7 +1,6 @@
-import { Search, Calculator } from "lucide-react";
+import { Search } from "lucide-react";
 import { motion } from "framer-motion";
 import { levels, semesters, settingsvariants } from "../../../utils/Constants";
-import Button from "../../../ui/Button";
 import Input from "../../../ui/Input";
 import { useSetUrl } from "../../../hooks/useSetUrl";
 function ResultsSearch() {
@@ -13,7 +12,7 @@ function ResultsSearch() {
   return (
     <motion.div
       variants={settingsvariants.itemVariants}
-      className="rounded-xl shadow-sm p-6 mb-8"
+      className="rounded-xl shadow-sm p-2 sm:p-6 mb-8"
     >
       <div className="flex flex-col md:flex-row gap-4 mb-6">
         <div className="flex-1 relative">
@@ -25,11 +24,6 @@ function ResultsSearch() {
             onChange={(e) => setParams({ query: e.target.value })}
           />
         </div>
-        <div className="flex gap-2">
-          <Button variant="primary" icon={<Calculator className="h-5 w-5" />}>
-            Calculate GPA
-          </Button>
-        </div>
       </div>
 
       <div className="flex flex-wrap gap-2">
@@ -39,7 +33,7 @@ function ResultsSearch() {
             <button
               key={currentlevel}
               onClick={() => setParams({ level: currentlevel })}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+              className={`px-2 sm:px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 level === currentlevel
                   ? "bg-blue-100 text-blue-600"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"

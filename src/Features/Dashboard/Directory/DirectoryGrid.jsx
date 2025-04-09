@@ -1,13 +1,16 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Quote, Award } from "lucide-react";
 import Button from "../../../ui/Button";
-import { executives, settingsvariants } from "../../../utils/Constants";
+import { facultyMembers, settingsvariants } from "../../../utils/Constants";
 import { useState } from "react";
+import ExecutiveModal from "./DirectoryModal";
+import { useModal } from "../../../ui/Modal";
 
 function DirectoryGrid() {
-  const [setSelectedExecutive] = useState(null);
+  const [selectedExecutive, setSelectedExecutive] = useState(null);
   const [expandedCard, setExpandedCard] = useState(null);
   const { itemVariants, containerVariants } = settingsvariants;
+  const { open } = useModal();
 
   const expandCard = (id) => {
     if (expandedCard === id) {
@@ -16,19 +19,25 @@ function DirectoryGrid() {
       setExpandedCard(id);
     }
   };
+
+  function handleSelect(exec) {
+    setSelectedExecutive(exec);
+
+    open("Executives");
+  }
   return (
     <motion.div
       variants={containerVariants}
       className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
     >
-      {executives.map((executive) => (
+      {facultyMembers.executives.map((executive) => (
         <motion.div
           key={executive.id}
           variants={itemVariants}
           className={`bg-white rounded-xl shadow-sm overflow-hidden cursor-pointer transition-all duration-300 ${
             expandedCard === executive.id ? "lg:col-span-2 lg:row-span-2" : ""
           }`}
-          onClick={() => setSelectedExecutive(executive)}
+          onClick={() => handleSelect(executive)}
         >
           <div className="relative">
             <img
@@ -38,27 +47,22 @@ function DirectoryGrid() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             <div className="absolute top-4 right-4">
-              <div className="p-2 bg-white/20 backdrop-blur-sm rounded-full">
+              {/* <div className="p-2 bg-white/20 backdrop-blur-sm rounded-full">
                 <executive.icon className="h-5 w-5 text-white" />
-              </div>
+              </div> */}
             </div>
             <div className="absolute bottom-4 left-4 text-white">
               <h3 className="font-bold text-lg">{executive.name}</h3>
-              <p className="text-white/80">{executive.role}</p>
             </div>
           </div>
 
           <div className="p-6">
             <div className="flex items-center gap-2 mb-4">
-              <span className="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
-                {executive?.department}
-              </span>
               <span className="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm font-medium">
                 {executive?.level} Level
               </span>
             </div>
-
-            <p className="text-gray-600 mb-4">{executive?.bio}</p>
+            <p className="text-gray-600">{executive.role}</p>
 
             <div className="flex items-center gap-4">
               <Button
@@ -114,6 +118,7 @@ function DirectoryGrid() {
           </div>
         </motion.div>
       ))}
+      <ExecutiveModal executive={selectedExecutive} />
     </motion.div>
   );
 }
