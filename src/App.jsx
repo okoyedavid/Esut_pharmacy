@@ -20,15 +20,14 @@ function App() {
         containerStyle={{ margin: "8px" }}
         toastOptions={{
           success: { duration: 3000 },
-          error: {
-            duration: 5000,
-          },
+          error: { duration: 5000 },
+          className: "animate-slide-in", // custom animation class
           style: {
             fontSize: "16px",
             maxWidth: "500px",
             padding: "16px 24px",
-            backgroundColor: `bg-gray-100`,
-            color: `text-blue-800`,
+            backgroundColor: "#f3f4f6", // use actual colors
+            color: "#1e40af",
           },
         }}
       />

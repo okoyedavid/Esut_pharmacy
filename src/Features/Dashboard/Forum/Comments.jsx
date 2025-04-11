@@ -1,8 +1,9 @@
 import { BadgeCheck } from "lucide-react";
 import { formatTimestamp } from "../../../utils/helper";
 import { useGetData } from "../../../hooks/useGetData";
+import CreateComment from "./CreateComment";
 
-function Comment({ id }) {
+function Comment({ id, commentsNo }) {
   const { data: comments, isLoading } = useGetData("comments", {
     column: "post_id",
     value: id,
@@ -54,6 +55,7 @@ function Comment({ id }) {
           ))}
         </div>
       </div>
+      <CreateComment id={id} commentsNo={commentsNo} />
     </div>
   );
 }
