@@ -17,6 +17,8 @@ import Results from "../DashboardPages/Results.jsx";
 import Resources from "../DashboardPages/Resources.jsx";
 import Directory from "../DashboardPages/Directory.jsx";
 import Forum from "../DashboardPages/Forum.jsx";
+import ForumPost from "../../Features/Dashboard/Forum/ForumPost.jsx";
+import ForumHome from "../../Features/Dashboard/Forum/ForumHome.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -35,7 +37,14 @@ export const router = createBrowserRouter([
       { path: "/dashboard/results", element: <Results /> },
       { path: "/dashboard/resources", element: <Resources /> },
       { path: "/dashboard/directory", element: <Directory /> },
-      { path: "/dashboard/forum", element: <Forum /> },
+      {
+        path: "/dashboard/forum",
+        element: <Forum />,
+        children: [
+          { index: true, element: <ForumHome /> },
+          { path: "/dashboard/forum/post", element: <ForumPost /> },
+        ],
+      },
     ],
   },
   {
@@ -56,22 +65,6 @@ export const router = createBrowserRouter([
           { element: <NewsInfo />, path: "/news/update" },
         ],
       },
-
-      // {
-      //   path: "/scribe",
-      //   element: <Scribe />,
-      //   errorElement: <Error />,
-      // },
-      // {
-      //   path: "login",
-      //   element: <Login />,
-      //   errorElement: <Error />,
-      // },
-      // {
-      //   path: "signup",
-      //   element: <SignUp />,
-      //   errorElement: <Error />,
-      // },
     ],
   },
   {

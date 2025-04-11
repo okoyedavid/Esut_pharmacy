@@ -8,6 +8,7 @@ function CourseSearchBar() {
   const { searchParams, setParams } = useSetUrl();
   const semester = searchParams.get("semester") || "first";
   const query = searchParams.get("query")?.toLowerCase();
+  const levelurl = searchParams.get("level");
 
   return (
     <motion.div variants={settingsvariants.itemVariants}>
@@ -30,14 +31,14 @@ function CourseSearchBar() {
             {levels.map((level) => (
               <button
                 key={level.value}
-                onClick={() => setParams({ level: level })}
+                onClick={() => setParams({ level: level.value })}
                 className={`px-2 py-1 sm:px-4 sm:py-2  rounded-lg text-sm font-medium transition-colors ${
-                  searchParams.get("level") === level.value
+                  Number(levelurl) === level.value
                     ? "bg-blue-100 text-blue-600"
                     : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                 }`}
               >
-                {level.label} Level
+                {level.label}
               </button>
             ))}
           </div>

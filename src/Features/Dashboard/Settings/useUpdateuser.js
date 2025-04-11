@@ -5,7 +5,11 @@ import { updateCurrentUser } from "../../../services/ApiAuth";
 import { useMutate } from "../../../hooks/useMutate";
 
 function useUpdateUser() {
-  const { mutate, isPending } = useMutate(updateCurrentUser, "update user");
+  const { mutate, isPending } = useMutate(
+    updateCurrentUser,
+    "update user",
+    "user"
+  );
   const { data } = useGetUser();
   const {
     name,

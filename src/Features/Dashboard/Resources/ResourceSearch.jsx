@@ -8,7 +8,7 @@ import { useSetUrl } from "../../../hooks/useSetUrl";
 function ResourceSearch() {
   const { searchParams, setParams } = useSetUrl();
   const query = searchParams.get("query") || "";
-  const department = searchParams.get("department") || "pharmaceutics";
+  const department = searchParams.get("department") || "pharmacology";
   return (
     <motion.div
       variants={settingsvariants.itemVariants}
@@ -40,7 +40,6 @@ function ResourceSearch() {
                 : "bg-gray-100 text-gray-600 hover:bg-gray-200"
             }`}
           >
-            <dept.icon className="h-4 w-4" />
             {dept.name}
           </button>
         ))}

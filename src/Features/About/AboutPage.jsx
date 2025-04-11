@@ -6,13 +6,8 @@ import {
   Book,
   Globe,
   Building2,
-  Microscope,
-  Stethoscope,
-  LineChart,
-  Leaf,
-  FlaskRound,
-  Pill,
 } from "lucide-react";
+import Departments from "./Departments";
 
 function AboutPage() {
   const fadeInUp = {
@@ -70,7 +65,7 @@ function AboutPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.2 }}
-              className="bg-black/5 shadow-lg backdrop-blur-sm rounded-xl p-6 text-center hover:bg-black/10 transition-colors"
+              className="bg-white/10 shadow-blue-200 shadow-md backdrop-blur-sm rounded-xl p-6 text-center hover:bg-black/10 transition-colors"
             >
               <stat.icon className="w-12 h-12 text-blue-300 mx-auto mb-4" />
               <h3 className="text-3xl font-bold text-black mb-2">
@@ -132,7 +127,7 @@ function AboutPage() {
               <motion.div
                 key={index}
                 whileHover={{ y: -5 }}
-                className="bg-black/5 shadow-lg backdrop-blur-sm rounded-xl p-4 hover:bg-black/10 "
+                className="bg-white/10 shadow-blue-200 shadow-md backdrop-blur-sm rounded-xl p-4 hover:bg-black/10 "
               >
                 <feature.icon className="w-8 h-8 text-blue-600 mb-3" />
                 <h3 className="text-black font-semibold mb-1">
@@ -145,101 +140,14 @@ function AboutPage() {
         </div>
 
         {/* Faculties */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-16"
-        >
-          <h2 className="text-3xl font-bold text-black mb-8 text-center">
-            Our Departments
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                name: "Pharmaceutical Chemistry",
-                icon: FlaskRound,
-                image:
-                  "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80",
-                description:
-                  "Advancing drug development and chemical analysis in pharmacy.",
-              },
-              {
-                name: "Pharmaceutics",
-                icon: Pill,
-                image:
-                  "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80",
-                description:
-                  "Formulating and delivering effective pharmaceutical products.",
-              },
-              {
-                name: "Pharmacology & Toxicology",
-                icon: Microscope,
-                image:
-                  "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80",
-                description:
-                  "Studying drug interactions and the effects of chemicals on health.",
-              },
-              {
-                name: "Clinical Pharmacy & Pharmacy Practice",
-                icon: Stethoscope,
-                image:
-                  "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&q=80",
-                description:
-                  "Enhancing patient care through evidence-based pharmacy practice.",
-              },
-              {
-                name: "Pharmacognosy & Natural Medicine",
-                icon: Leaf,
-                image:
-                  "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80",
-                description:
-                  "Exploring the medicinal potential of natural products.",
-              },
-              {
-                name: "Social & Administrative Pharmacy",
-                icon: LineChart,
-                image:
-                  "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80",
-                description:
-                  "Managing pharmaceutical policies, business, and healthcare systems.",
-              },
-            ].map((department, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ scale: 1.02 }}
-                className="group relative overflow-hidden rounded-xl"
-              >
-                <div className="aspect-w-16 aspect-h-9">
-                  <img
-                    src={department.image}
-                    alt={department.name}
-                    className="object-cover w-full h-full rounded-xl"
-                  />
-                  <div className="absolute inset-0 bg-white/5 backdrop-blur-[2px] transition-all duration-300" />
-                  <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                    <div className="flex items-center gap-2 mb-2">
-                      <department.icon className="w-6 h-6 text-blue-300" />
-                      <h3 className="text-xl font-semibold text-black">
-                        {department.name}
-                      </h3>
-                    </div>
-                    <p className="text-blue-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      {department.description}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        <Departments />
 
         {/* Call to Action */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-4 bg-black/5 hover:bg-black/10 backdrop-blur-lg rounded-xl p-8 shadow-lg"
+          className="text-center mb-4 bg-white/10 shadow-blue-200 shadow-md hover:bg-black/10 backdrop-blur-lg rounded-xl p-8 "
         >
           <h2 className="text-3xl font-bold text-black mb-4">
             Stay Connected with Us

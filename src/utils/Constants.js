@@ -1,11 +1,3 @@
-import {
-  FlaskConical,
-  Leaf,
-  Microscope,
-  PillIcon,
-  Stethoscope,
-} from "lucide-react";
-
 export const settingsvariants = {
   containerVariants: {
     hidden: { opacity: 0 },
@@ -50,24 +42,53 @@ export const gradePoints = {
 export { levels, semesters };
 
 export const departments = [
-  { id: "pharmaceutics", name: "Pharmaceutics", icon: FlaskConical },
-  { id: "pharmacology", name: "Pharmacology", icon: PillIcon },
   {
-    id: "pharmaceutical-chemistry",
+    id: "Pharmaceutical_Chemistry",
     name: "Pharmaceutical Chemistry",
-    icon: Microscope,
+    hod: "Dr. Amaka Okorie",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtdEpgTMKe29zDpmINeYXXLEw84rHBto7s_Q&s",
   },
-  { id: "pharmacognosy", name: "Pharmacognosy", icon: Leaf },
-  { id: "clinical-pharmacy", name: "Clinical Pharmacy", icon: Stethoscope },
   {
-    id: "pharmaceutical-microbiology",
-    name: "Pharmaceutical Microbiology",
-    icon: Microscope,
+    id: "Pharmacognosy",
+    name: "Pharmacognosy",
+    hod: "Dr Obinna Onugwu",
+    image:
+      "https://i0.wp.com/msajpharm-edu.in/wp-content/uploads/2022/10/gn2.jpg?fit=612%2C520&ssl=1",
+  },
+
+  {
+    id: "Pharmaceutics_and_Pharmaceutical_technology",
+    name: "Pharmaceutics and Pharmaceutical technology",
+    hod: "Dr. Omeh Romanus",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7CO-xlB1NUKP6GDBa4Hdn0sCZ9dOPOmRCpA&s",
+  },
+  {
+    id: "pharmacology",
+    name: "pharmacology",
+    hod: "Ass. Prof. Daniel Ajaghaku",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoMpfN4UyfoHmDR16jCNxY7Ngufrb_Q1ew9Q&s",
+  },
+  {
+    id: "clinical_pharmacy",
+    name: "Clinical Pharmacy and Bio-Pharmaceutics",
+    hod: "Dr. Ofor Amala",
+    image:
+      "https://www.csi.cuny.edu/sites/default/files/styles/inner_page_slider/public/images/slider/caduceus-pharmD2-bkgd.jpg?itok=90WPoq7h",
+  },
+  {
+    id: "pharmaceutical_microbiology",
+    name: "Pharmaceutical Microbiology and Biotechnology",
+    hod: "Dr Jane ugochukwu",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHzXahzfoZ52n4CpvYeJ-hXZzDGDyODuqmUg&s",
   },
 ];
 
 export const resources = {
-  pharmaceutics: [
+  Pharmaceutics_and_Pharmaceutical_technology: [
     {
       id: 1,
       title: "Physical Pharmacy Textbook",

@@ -15,7 +15,6 @@ import { useCourses } from "../../../context/CourseProvider";
 
 const ProgressCharts = () => {
   const { result } = useCourses();
-
   const barChartData = result.map((course) => ({
     name: course.code,
     Grade:

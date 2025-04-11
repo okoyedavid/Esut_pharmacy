@@ -1,6 +1,7 @@
 import toast from "react-hot-toast";
 import { deleteAvatar, uploadAvatar } from "./Action";
 import { supabase } from "./supabase";
+import { getData, insertData, updateTable } from "./backend";
 export async function signupUser({ name, email, password }) {
   const { data, error } = await supabase.auth.signUp({
     email,
@@ -88,11 +89,38 @@ export async function updateCurrentUser({
       await deleteAvatar(updatedUserData);
     }
 
+    await updateUsers(updatedUserData.user);
+
     return updatedUserData;
   } catch (error) {
     console.error("Error updating user:", error.message);
     throw error;
   }
+}
+
+async function updateUsers(user) {
+  const { name, avatar, level } = user.user_metadata;
+  const data = await getData("users", {
+    column: "user_id",
+    value: user.id,
+  });
+
+  if (data.length === 0) {
+    await insertData("users", {
+      user_id: user.id,
+      name,
+      level,
+      avatar,
+    });
+
+    return;
+  }
+
+  await updateTable(
+    "users",
+    { name, level, avatar },
+    { column: "user_id", value: user.id }
+  );
 }
 
 export async function updatePassword(info) {

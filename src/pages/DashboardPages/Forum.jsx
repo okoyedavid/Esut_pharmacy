@@ -1,19 +1,14 @@
-import ForumFeed from "../../Features/Dashboard/Forum/ForumFeed";
-import ForumSearch from "../../Features/Dashboard/Forum/ForumSearch";
-import ForumHead from "../../Features/Dashboard/Forum/ForumHead";
+import ForumProvider from "../../context/ForumProvider";
 import PageMotion from "../../ui/PageMotion";
+import { Outlet } from "react-router-dom";
 
 const Forum = () => {
   return (
-    <PageMotion>
-      {/* Header Section */}
-      <ForumHead />
-      {/* Search and Filters */}
-      <ForumSearch />
-      {/* Posts Feed */}
-      <ForumFeed />
-      {/* Post Modal */}
-    </PageMotion>
+    <ForumProvider>
+      <PageMotion>
+        <Outlet />
+      </PageMotion>
+    </ForumProvider>
   );
 };
 

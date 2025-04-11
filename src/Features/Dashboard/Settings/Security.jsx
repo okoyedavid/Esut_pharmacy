@@ -13,7 +13,11 @@ import { Eye, EyeOff } from "lucide-react";
 function Security() {
   const { itemVariants, containerVariants } = settingsvariants;
   const [showPassword, setShowPassword] = useState(false);
-  const { mutate, isPending } = useMutate(updatePassword, ["update Password"]);
+  const { mutate, isPending } = useMutate(
+    updatePassword,
+    "update Password",
+    "user"
+  );
   const {
     formState: { errors },
     register,

@@ -17,7 +17,7 @@ import { useGetData } from "../../../hooks/useGetData";
 function DirectoryGrid() {
   const [expandedCard, setExpandedCard] = useState(null);
   const { itemVariants, containerVariants } = settingsvariants;
-  const { data: executives, isLoading } = useGetData("excos");
+  const { data, isLoading } = useGetData("excos");
 
   const expandCard = (id) => {
     if (expandedCard === id) {
@@ -28,6 +28,10 @@ function DirectoryGrid() {
   };
 
   if (isLoading) return <SpinnerFullPage />;
+  const executives = data.map((item) => {
+    return { ...item, contacts: JSON.parse(item.contacts) };
+  });
+
   return (
     <motion.div
       variants={containerVariants}
@@ -40,13 +44,13 @@ function DirectoryGrid() {
           className={`bg-white rounded-xl h-fit shadow-sm overflow-hidden cursor-pointer transition-all duration-300 ${
             expandedCard === executive.id ? "lg:col-span-2 lg:row-span-2" : ""
           }`}
-          onClick={() => setExpandedCard(executive.name)}
+          onClick={() => expandCard(executive.name)}
         >
           <div className="relative">
             <img
               src={executive.image}
               alt={executive.name}
-              className="w-full h-48 object-cover"
+              className="w-full h-72 object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             <div className="absolute top-4 right-4"></div>
@@ -68,10 +72,7 @@ function DirectoryGrid() {
                 variant="secondary"
                 size="sm"
                 icon={<Quote className="h-4 w-4" />}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  expandCard(executive.id);
-                }}
+                onClick={() => expandCard(executive.name)}
               >
                 {expandedCard === executive.name ? "Less Info" : "More Info"}
               </Button>
@@ -86,7 +87,7 @@ function DirectoryGrid() {
                   className="mt-4 pt-4 border-t"
                 >
                   <div className="space-y-4">
-                    <div className="bg-gray-50 p-4 rounded-lg">
+                    <div className="bg-gray-50 p-2 rounded-lg">
                       <p className="italic text-gray-600">{executive.quote}</p>
                     </div>
                     <div>
@@ -104,7 +105,7 @@ function DirectoryGrid() {
                           )
                         )}
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <div className="grid grid-cols-1 gap-4 mb-6">
                           <div className="space-y-2">
                             <h3 className="font-semibold mb-3">
                               Contact Information

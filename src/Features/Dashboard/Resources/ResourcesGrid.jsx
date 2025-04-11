@@ -15,7 +15,7 @@ import { useSetUrl } from "../../../hooks/useSetUrl";
 function ResourceGrid() {
   const { searchParams, setParams } = useSetUrl();
   const query = searchParams.get("query");
-  const department = searchParams.get("department") || "pharmaceutics";
+  const department = searchParams.get("department") || "pharmacology";
 
   const [bookmarkedResources, setBookmarkedResources] = useState(new Set());
 

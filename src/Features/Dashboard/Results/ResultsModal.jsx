@@ -7,14 +7,11 @@ import { calculateGradePoint } from "../../../utils/helper";
 import { getData, insertData, updateTable } from "../../../services/backend";
 import { useGetUser } from "../../../hooks/useGetUser";
 import { useMutate } from "../../../hooks/useMutate";
-import { useQueryClient } from "@tanstack/react-query";
 
 const ResultModal = ({ course }) => {
   const { data: user } = useGetUser();
   const { close } = useModal();
   const [scores, setScores] = useState([]);
-
-  const queryClient = useQueryClient();
 
   async function handleSave() {
     const data = await getData("assessments", {
@@ -35,21 +32,29 @@ const ResultModal = ({ course }) => {
         },
       ]);
     } else {
-      await updateTable("assessments", { grade, percentage, scores: scores }, [
-        { column: "user_id", value: user.id },
-        { column: "course_id", value: course.id },
-      ]);
+      console.log("called");
+      await updateTable(
+        "assessments",
+        [{ grade, percentage, scores: scores }],
+        [
+          { column: "user_id", value: user.id },
+          { column: "course_id", value: course.id },
+        ]
+      );
     }
   }
 
-  const { mutate, isPending } = useMutate(handleSave, "update assessments");
+  const { mutate, isPending } = useMutate(
+    handleSave,
+    "update assessments",
+    "assessments"
+  );
 
   function recordResult() {
     mutate(
       {},
       {
         onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: ["assessments"] });
           close();
         },
       }

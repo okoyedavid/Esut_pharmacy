@@ -3,8 +3,14 @@ import { supabase } from "./supabase";
 async function getData(table, filter) {
   let query = supabase.from(table).select("*");
 
-  if (filter?.column && filter?.value) {
-    query = query.eq(filter.column, filter.value);
+  if (Array.isArray(filter) || (filter?.column && filter?.value)) {
+    if (Array.isArray(filter)) {
+      filter.forEach(({ column, value }) => {
+        query = query.eq(column, value);
+      });
+    } else {
+      query = query.eq(filter.column, filter.value);
+    }
   }
 
   const { data, error } = await query;
@@ -50,17 +56,25 @@ async function insertData(table, data) {
 
   return info;
 }
-
 async function deleteData(table, filter) {
-  const { error } = await supabase
-    .from(table)
-    .delete()
-    .eq(filter.column, filter.value);
+  let query = supabase.from(table).delete();
+
+  if (Array.isArray(filter)) {
+    filter.forEach(({ column, value }) => {
+      query = query.eq(column, value);
+    });
+  } else {
+    query = query.eq(filter.column, filter.value);
+  }
+
+  const { data, error } = await query;
 
   if (error) {
     console.error(error.message);
-    throw new Error(`Error updating messages ${table}`, error);
+    throw new Error(`Error Deleting from ${table} table: ${error.message}`);
   }
+
+  return data;
 }
 
 export { getData, updateTable, insertData, deleteData };

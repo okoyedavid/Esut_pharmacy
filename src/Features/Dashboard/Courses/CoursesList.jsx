@@ -19,12 +19,12 @@ function CoursesList() {
   return (
     <motion.div
       variants={settingsvariants.itemVariants}
-      className="max-w-6xl mx-auto bg-white p-4 dark:bg-gray-900 rounded-xl min-h-screen"
+      className="max-w-6xl mx-auto bg-white md:p-4 dark:bg-gray-900 rounded-xl min-h-screen"
     >
       {result.map((course) => (
         <div
           key={course.id}
-          className="bg-white shadow-2xs dark:bg-gray-900 shadow-1xl rounded-xl mb-2 p-6 cursor-pointer"
+          className="bg-white shadow-md border border-blue-100 dark:bg-gray-900 rounded-xl mb-2 md:p-6 p-3 cursor-pointer"
           onClick={() => handleSelectCourse(course.id)}
         >
           <div className="flex items-center justify-between mb-4">

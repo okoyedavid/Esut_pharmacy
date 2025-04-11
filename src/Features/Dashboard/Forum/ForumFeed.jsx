@@ -1,26 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { settingsvariants } from "../../../utils/Constants";
 import { motion } from "framer-motion";
 import {
   MessageCircle,
   Heart,
   Share2,
-  MoreHorizontal,
   BadgeCheck,
   Clock,
   Bookmark,
 } from "lucide-react";
 import { formatTimestamp } from "../../../utils/helper";
-import { useGetData } from "../../../hooks/useGetData";
-import SpinnerFullPage from "../../../ui/SpinnerFullPage";
+import { useNavigate } from "react-router-dom";
+import { useForum } from "../../../context/ForumProvider";
+import {
+  deleteData,
+  getData,
+  insertData,
+  updateTable,
+} from "../../../services/backend";
+import { useGetUser } from "../../../hooks/useGetUser";
+import { AiFillHeart } from "react-icons/ai";
 
 function ForumFeed() {
-  const [setSelectedPost] = useState(null);
+  const { posts, likes } = useForum();
+  const { data } = useGetUser();
 
-  const { data: forum, isLoading } = useGetData("forum");
   const [likedPosts, setLikedPosts] = useState(new Set());
   const [savedPosts, setSavedPosts] = useState(new Set());
-  const toggleLike = (postId) => {
+
+  useEffect(() => {
+    if (likes) {
+      const hasLikes = likes.filter((item) => item.user_id === data.id);
+      if (hasLikes.length > 0) {
+        const likeid = new Set(hasLikes.map((like) => like.post_id));
+        setLikedPosts(likeid);
+      }
+    }
+  }, [data.id, likes]);
+
+  const toggleLike = async (postId, likes) => {
+    console.log(postId);
     setLikedPosts((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(postId)) {
@@ -30,9 +49,42 @@ function ForumFeed() {
       }
       return newSet;
     });
+
+    const isLiked = await getData("likes", [
+      { column: "user_id", value: data.id },
+      { column: "post_id", value: postId },
+      { column: "table", value: "forum" },
+    ]);
+    if (isLiked.length === 0) {
+      await insertData("likes", {
+        user_id: data.id,
+        post_id: postId,
+        table: "forum",
+      });
+
+      await updateTable(
+        "forum",
+        { likes: likes + 1 },
+        { column: "id", value: postId }
+      );
+
+      return;
+    }
+
+    await deleteData("likes", [
+      { column: "user_id", value: data.id },
+      { column: "post_id", value: postId },
+      { column: "table", value: "forum" },
+    ]);
+
+    await updateTable(
+      "forum",
+      { likes: likes - 1 },
+      { column: "id", value: postId }
+    );
   };
 
-  const toggleSave = (postId) => {
+  const toggleSave = async (postId) => {
     setSavedPosts((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(postId)) {
@@ -43,20 +95,23 @@ function ForumFeed() {
       return newSet;
     });
   };
-
-  if (isLoading) return <SpinnerFullPage />;
+  const navigate = useNavigate();
   const { itemVariants, containerVariants } = settingsvariants;
+
+  function handleClick(id) {
+    navigate(`/dashboard/forum/post?id=${id}`);
+  }
 
   return (
     <motion.div variants={containerVariants} className="space-y-6">
-      {forum?.map((post) => (
+      {posts?.map((post) => (
         <motion.div
           key={post.id}
           variants={itemVariants}
           className="bg-white rounded-xl shadow-sm overflow-hidden"
         >
           {/* Post Header */}
-          <div className="p-4">
+          <div className="p-4" onClick={() => handleClick(post.id)}>
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
                 <img
@@ -76,14 +131,11 @@ function ForumFeed() {
                     <span>•</span>
                     <span className="flex items-center gap-1">
                       <Clock className="h-4 w-4" />
-                      {formatTimestamp(post.timestamp)}
+                      {formatTimestamp(post.created_at)}
                     </span>
                   </div>
                 </div>
               </div>
-              <button className="text-gray-600 hover:text-gray-900">
-                <MoreHorizontal className="h-5 w-5" />
-              </button>
             </div>
 
             {/* Post Content */}
@@ -102,44 +154,35 @@ function ForumFeed() {
                     src={image}
                     alt={`Post image ${index + 1}`}
                     className="w-full h-64 object-cover rounded-lg cursor-pointer"
-                    onClick={() => setSelectedPost(post)}
                   />
                 ))}
               </div>
             )}
 
-            {/* Post Tags */}
-            {post.tags && (
-              <div className="flex flex-wrap gap-2 mb-4">
-                {post.tags.map((tag, index) => (
-                  <span
-                    key={index}
-                    className="px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600"
-                  >
-                    #{tag}
-                  </span>
-                ))}
-              </div>
-            )}
-
-            {/* Post Actions */}
-            <div className="flex items-center justify-between pt-4 border-t">
+            <div className="flex items-center justify-between pt-4">
               <div className="flex items-center gap-6">
                 <button
-                  onClick={() => toggleLike(post.id)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleLike(post.id, post.likes);
+                  }}
                   className={`flex items-center gap-2 ${
                     likedPosts.has(post.id) ? "text-red-500" : "text-gray-600"
                   }`}
                 >
-                  <Heart className="h-5 w-5" />
+                  {likedPosts.has(post.id) ? (
+                    <AiFillHeart className={`h-5 text-red-600 w-5`} />
+                  ) : (
+                    <Heart className={` h-5 w-5`} />
+                  )}
                   <span>{post.likes + (likedPosts.has(post.id) ? 1 : 0)}</span>
                 </button>
                 <button
-                  onClick={() => setSelectedPost(post)}
+                  onClick={() => handleClick(post.id)}
                   className="flex items-center gap-2 text-gray-600"
                 >
                   <MessageCircle className="h-5 w-5" />
-                  <span>{post.comments.length}</span>
+                  <span>{post.comments}</span>
                 </button>
                 <button className="text-gray-600">
                   <Share2 className="h-5 w-5" />

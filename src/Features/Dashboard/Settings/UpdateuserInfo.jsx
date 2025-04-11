@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import Button from "../../../ui/Button";
 import Input from "../../../ui/Input";
 import Formrow from "../../../ui/Formrow";
-import { settingsvariants } from "../../../utils/Constants";
+import { levels, settingsvariants } from "../../../utils/Constants";
 import { useUpdateUser } from "./useUpdateuser";
 import toast from "react-hot-toast";
 
@@ -91,12 +91,18 @@ function UpdateUserInfo() {
               />
             </Formrow>
             <Formrow name="Level" error={errors?.level?.message}>
-              <Input
-                register={register}
-                title="level"
-                validation={{ required: "Please input your level" }}
-                placeholder="Enter your Level"
-              />
+              <select
+                placeholder="select level"
+                className="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                {...register("level", { required: "This field is required" })}
+              >
+                <option>Select Current level</option>
+                {levels.map((item) => (
+                  <option value={item.value} key={item.value}>
+                    {item.label}
+                  </option>
+                ))}
+              </select>
             </Formrow>
             <Formrow name={"Email Address"} error={errors?.name?.email}>
               <Input
