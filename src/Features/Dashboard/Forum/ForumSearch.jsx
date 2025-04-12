@@ -11,10 +11,13 @@ import {
   Microscope,
 } from "lucide-react";
 import Button from "../../../ui/Button";
+import Modal, { useModal } from "../../../ui/Modal";
+import CreatePost from "./CreatePost";
 
 function ForumSearch() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeFilter, setActiveFilter] = useState("all");
+  const { open } = useModal();
 
   const { itemVariants } = settingsvariants;
 
@@ -40,7 +43,11 @@ function ForumSearch() {
               className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
-          <Button variant="primary" icon={<ImageIcon className="h-5 w-5" />}>
+          <Button
+            onClick={() => open("createpost")}
+            variant="primary"
+            icon={<ImageIcon className="h-5 w-5" />}
+          >
             Create Post
           </Button>
         </div>
@@ -62,6 +69,9 @@ function ForumSearch() {
           ))}
         </div>
       </div>
+      <Modal.Window name={"createpost"}>
+        <CreatePost />
+      </Modal.Window>
     </motion.div>
   );
 }

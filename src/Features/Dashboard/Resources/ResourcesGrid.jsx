@@ -1,53 +1,36 @@
-import { resources, settingsvariants } from "../../../utils/Constants";
+import { settingsvariants } from "../../../utils/Constants";
 import { motion } from "framer-motion";
-import {
-  BookOpen,
-  FileText,
-  Download,
-  Clock,
-  BookMarked,
-  Share2,
-  FileQuestion,
-} from "lucide-react";
-import { useState } from "react";
+import { FileText, Download, Clock } from "lucide-react";
 import { useSetUrl } from "../../../hooks/useSetUrl";
+import { useGetData } from "../../../hooks/useGetData";
+import { useState } from "react";
+import Modal, { useModal } from "../../../ui/Modal";
+import ResourceModal from "./ResourceModal";
 
 function ResourceGrid() {
-  const { searchParams, setParams } = useSetUrl();
-  const query = searchParams.get("query");
-  const department = searchParams.get("department") || "pharmacology";
+  const { data: resources, isLoading } = useGetData("resources");
+  const { searchParams } = useSetUrl();
+  const query = searchParams?.get("query")?.toLowerCase() || "";
+  const [data, setData] = useState("");
+  const { open } = useModal();
 
-  const [bookmarkedResources, setBookmarkedResources] = useState(new Set());
+  if (isLoading) return <p>Loading resources</p>;
 
-  const resourceTypes = {
-    textbook: { label: "Textbook", icon: BookOpen },
-    notes: { label: "Lecture Notes", icon: FileText },
-    questions: { label: "Past Questions", icon: FileQuestion },
-    handout: { label: "Handout", icon: FileText },
-  };
-
-  const resourceList = resources[department].filter((item) => {
+  const resourceList = resources.filter((item) => {
     return (
       !query ||
-      item.type?.toLowerCase().includes(query) ||
+      item.semester?.toLowerCase().includes(query) ||
       item.title?.toLowerCase().includes(query) ||
-      item.author?.toLowerCase().includes(query)
+      item.year?.toLowerCase().includes(query) ||
+      item.semester?.toLowerCase().includes(query) ||
+      item.department?.toLowerCase().includes(query)
     );
   });
 
-  console.log(resourceList);
-
-  const toggleBookmark = (id) => {
-    setBookmarkedResources((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(id)) {
-        newSet.delete(id);
-      } else {
-        newSet.add(id);
-      }
-      return newSet;
-    });
-  };
+  function handleClick(data) {
+    setData(data);
+    open("resources modal");
+  }
 
   return (
     <motion.div
@@ -60,12 +43,12 @@ function ResourceGrid() {
           variants={settingsvariants.itemVariants}
           whileHover={{ y: -4 }}
           className="rounded-xl shadow-sm overflow-hidden cursor-pointer group"
-          onClick={() => setParams({ resource: resource.id })}
+          onClick={() => handleClick(resource)}
         >
-          {resource.coverImage ? (
+          {resource.cover_image ? (
             <div className="relative h-48">
               <img
-                src={resource.coverImage}
+                src={resource.cover_image}
                 alt={resource.title}
                 className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
               />
@@ -77,66 +60,49 @@ function ResourceGrid() {
             </div>
           ) : (
             <div className="h-48 bg-gray-100 flex items-center justify-center">
-              {/* {resourceTypes[resource.type].icon && (
-                  <resourceTypes[resource.type].icon className="h-12 w-12 text-gray-400" />
-                )} */}
+              <FileText className="h-12 w-12 text-gray-400" />
             </div>
           )}
 
           <div className="p-6">
-            {!resource.coverImage && (
+            {!resource.cover_image && (
               <>
                 <h3 className="font-bold text-lg mb-2">{resource.title}</h3>
                 <p className="text-gray-600 text-sm mb-4">{resource.author}</p>
               </>
             )}
-
-            <div className="flex items-center justify-between mb-4">
-              <span className="flex items-center gap-1 text-sm text-gray-600">
-                <Clock className="h-4 w-4" />
-                {new Date(resource.uploadDate).toLocaleDateString()}
+            <div className="flex items-center mb-2">
+              <span className="bg-gray-300 text-sm px-2 mr-2 text-gray-500 rounded-xl">
+                {resource.year}
               </span>
-              <span className="flex items-center gap-1 text-sm text-gray-600">
-                <Download className="h-4 w-4" />
-                {resource.downloads}
+              <span className="bg-gray-300 text-sm px-2 mr-2 text-gray-500 rounded-xl">
+                {resource.department}
+              </span>
+              <span className="bg-gray-300 text-sm px-2 text-gray-500 rounded-xl">
+                {resource.semester} semester
+              </span>
+            </div>
+            <div className="mb-4">
+              <span className="text-sm">
+                {resource.description.slice(0, 80)}......
               </span>
             </div>
 
-            <div className="flex items-center justify-between">
-              <span className="flex items-center gap-1 text-sm font-medium text-blue-600">
-                {/* {resourceTypes[resource.type].icon && (
-                    <resourceTypes[resource.type].icon className="h-4 w-4" />
-                  )} */}
-                {resourceTypes[resource.type].label}
+            <div className="flex items-center justify-between ">
+              <span className="flex items-center gap-1 text-sm text-gray-600">
+                <Clock className="h-4 w-4" />
+                {new Date(resource.created_at).toLocaleDateString()}
               </span>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleBookmark(resource.id);
-                  }}
-                  className={`p-2 rounded-full transition-colors ${
-                    bookmarkedResources.has(resource.id)
-                      ? "bg-blue-100 text-blue-600"
-                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                  }`}
-                >
-                  <BookMarked className="h-4 w-4" />
-                </button>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    // Handle share
-                  }}
-                  className="p-2 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200"
-                >
-                  <Share2 className="h-4 w-4" />
-                </button>
-              </div>
+
+              <Download className="h-7 w-7" />
             </div>
           </div>
         </motion.div>
       ))}
+
+      <Modal.Window name={"resources modal"}>
+        <ResourceModal resource={data} />
+      </Modal.Window>
     </motion.div>
   );
 }

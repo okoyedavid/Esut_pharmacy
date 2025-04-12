@@ -58,8 +58,8 @@ export const departments = [
   },
 
   {
-    id: "Pharmaceutics_and_Pharmaceutical_technology",
-    name: "Pharmaceutics and Pharmaceutical technology",
+    id: "Pharmaceutics",
+    name: "Pharmaceutics",
     hod: "Dr. Omeh Romanus",
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7CO-xlB1NUKP6GDBa4Hdn0sCZ9dOPOmRCpA&s",
@@ -73,70 +73,16 @@ export const departments = [
   },
   {
     id: "clinical_pharmacy",
-    name: "Clinical Pharmacy and Bio-Pharmaceutics",
+    name: "Clinical Pharmacy",
     hod: "Dr. Ofor Amala",
     image:
       "https://www.csi.cuny.edu/sites/default/files/styles/inner_page_slider/public/images/slider/caduceus-pharmD2-bkgd.jpg?itok=90WPoq7h",
   },
   {
     id: "pharmaceutical_microbiology",
-    name: "Pharmaceutical Microbiology and Biotechnology",
+    name: "Pharmaceutical Microbiology",
     hod: "Dr Jane ugochukwu",
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHzXahzfoZ52n4CpvYeJ-hXZzDGDyODuqmUg&s",
   },
 ];
-
-export const resources = {
-  Pharmaceutics_and_Pharmaceutical_technology: [
-    {
-      id: 1,
-      title: "Physical Pharmacy Textbook",
-      type: "textbook",
-      author: "Dr. Alfred Martin",
-      description: "Comprehensive guide to physical pharmacy principles",
-      fileSize: "25.4 MB",
-      uploadDate: "2024-02-15",
-      downloads: 234,
-      views: 1205,
-      rating: 4.5,
-      fileUrl: "#",
-      previewUrl: "#",
-      coverImage:
-        "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&q=80",
-    },
-    {
-      id: 2,
-      title: "Pharmaceutical Calculations",
-      type: "notes",
-      author: "Prof. Sarah Williams",
-      description:
-        "Detailed notes on pharmaceutical calculations and formulations",
-      fileSize: "12.8 MB",
-      uploadDate: "2024-03-01",
-      downloads: 156,
-      views: 890,
-      rating: 4.8,
-      fileUrl: "#",
-      previewUrl: "#",
-    },
-  ],
-  pharmacology: [
-    {
-      id: 3,
-      title: "Clinical Pharmacology",
-      type: "textbook",
-      author: "Dr. James Smith",
-      description: "Essential concepts in clinical pharmacology",
-      fileSize: "30.2 MB",
-      uploadDate: "2024-02-28",
-      downloads: 189,
-      views: 945,
-      rating: 4.7,
-      fileUrl: "#",
-      previewUrl: "#",
-      coverImage:
-        "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80",
-    },
-  ],
-};

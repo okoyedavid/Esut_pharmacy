@@ -7,12 +7,12 @@ import { useLikes } from "./useLikes";
 import { AiFillHeart } from "react-icons/ai";
 
 function ForumPost() {
-  const { posts } = useForum();
+  const { totalPosts } = useForum();
   const [searchParams] = useSearchParams();
   const post_id = searchParams.get("id");
   const { toggleLike, likedPosts, initialLikedPosts } = useLikes();
 
-  const post = posts.filter((item) => item.id === Number(post_id))[0];
+  const post = totalPosts.filter((item) => item.id === Number(post_id))[0];
 
   const isLiked = likedPosts.has(post.id);
   const wasInitiallyLiked = initialLikedPosts.has(post.id);
@@ -26,18 +26,18 @@ function ForumPost() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img
-              src={post.author.image}
-              alt={post.author.name}
+              src={post.avatar}
+              alt={post.name}
               className="w-12 h-12 rounded-full object-cover"
             />
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="font-semibold">{post.author.name}</h3>
-                {post.author.verified && (
+                <h3 className="font-semibold">{post.name}</h3>
+                {post.status !== "STUDENT" && (
                   <BadgeCheck className="h-4 w-4 text-blue-500" />
                 )}
               </div>
-              <p className="text-sm text-gray-600">{post.author.role}</p>
+              <p className="text-sm text-gray-600">{post.position}</p>
             </div>
           </div>
         </div>
@@ -57,7 +57,7 @@ function ForumPost() {
                 key={index}
                 src={image}
                 alt={`Post image ${index + 1}`}
-                className="w-full h-64 object-cover rounded-lg"
+                className="w-full h-24 object-cover rounded-lg"
               />
             ))}
           </div>

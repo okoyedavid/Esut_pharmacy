@@ -2,6 +2,7 @@ import ResourceSearch from "../../Features/Dashboard/Resources/ResourceSearch";
 import ResourceGrid from "../../Features/Dashboard/Resources/ResourcesGrid";
 import PageMotion from "../../ui/PageMotion";
 import PageHead from "../../ui/PageHead";
+import Modal from "../../ui/Modal";
 
 const Resources = () => {
   return (
@@ -14,7 +15,9 @@ const Resources = () => {
       {/* Search and Filter Section */}
       <ResourceSearch />
       {/* Resources Grid */}
-      <ResourceGrid />
+      <Modal>
+        <ResourceGrid />
+      </Modal>
     </PageMotion>
   );
 };

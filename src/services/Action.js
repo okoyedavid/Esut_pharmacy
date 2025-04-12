@@ -1,4 +1,5 @@
 import { supabaseUrl } from "./api";
+import { insertData } from "./backend";
 import { supabase } from "./supabase";
 
 async function deleteAvatar(updatedUserData) {
@@ -35,4 +36,32 @@ async function uploadAvatar(user_id, avatar) {
   return finalUpdatedUser;
 }
 
-export { uploadAvatar, deleteAvatar };
+async function uploadImages(images, id) {
+  if (images.length === 0) return [];
+
+  const toUpload = await Promise.all(
+    images.map(async (image) => {
+      const fileName = `forum-${id}-${Math.random()}`;
+      const { error: storageError } = await supabase.storage
+        .from("forum")
+        .upload(fileName, image);
+
+      if (storageError) throw new Error(storageError.message);
+
+      return `${supabaseUrl}/storage/v1/object/public/forum/${fileName}`;
+    })
+  );
+
+  return toUpload;
+}
+
+async function createPost({ content, images, id }) {
+  const toUpload = await uploadImages(images, id);
+
+  await insertData("forum", {
+    user_id: id,
+    content,
+    ...(images ? { images: toUpload } : {}),
+  });
+}
+export { uploadAvatar, deleteAvatar, createPost };

@@ -32,7 +32,6 @@ const ResultModal = ({ course }) => {
         },
       ]);
     } else {
-      console.log("called");
       await updateTable(
         "assessments",
         [{ grade, percentage, scores: scores }],

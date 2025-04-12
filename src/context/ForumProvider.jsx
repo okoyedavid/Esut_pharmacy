@@ -6,14 +6,31 @@ const Forum = createContext();
 
 function ForumProvider({ children }) {
   const { data: posts, isLoading } = useGetData("forum");
+  const { data: users, isLoading: isLoadingUsers } = useGetData("users");
 
   const { data: likes, isLoadingLikes } = useGetData("likes", {
     column: "table",
     value: "forum",
   });
 
-  if (isLoading || isLoadingLikes) return <SpinnerFullPage />;
-  return <Forum.Provider value={{ posts, likes }}>{children}</Forum.Provider>;
+  if ((isLoading || isLoadingLikes, isLoadingUsers)) return <SpinnerFullPage />;
+
+  const forumPosts = posts?.map((post) => {
+    const user = users.filter((us) => us.user_id === post.user_id)[0];
+
+    return {
+      ...post,
+      avatar: user.avatar,
+      name: user.name,
+      position: user.position,
+      status: user.status,
+    };
+  });
+
+  const totalPosts = [...forumPosts].reverse();
+  return (
+    <Forum.Provider value={{ totalPosts, likes }}>{children}</Forum.Provider>
+  );
 }
 
 export default ForumProvider;

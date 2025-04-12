@@ -1,4 +1,4 @@
-import { Send } from "lucide-react";
+import { Loader, Send } from "lucide-react";
 import { useState } from "react";
 import { useGetUser } from "../../../hooks/useGetUser";
 import { useMutate } from "../../../hooks/useMutate";
@@ -56,7 +56,11 @@ function CreateComment({ id, commentsNo }) {
             onClick={createComment}
             className="text-blue-500 hover:text-blue-600"
           >
-            <Send className="h-8 w-8" />
+            {isPending ? (
+              <Loader className="h-4 w-4 animate-spin" />
+            ) : (
+              <Send className="h-8 w-8" />
+            )}
           </button>
         </div>
       </div>

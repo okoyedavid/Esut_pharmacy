@@ -5,9 +5,24 @@ import { AiFillHeart } from "react-icons/ai";
 import { formatTimestamp } from "../../../utils/helper";
 import { useNavigate } from "react-router-dom";
 import { useLikes } from "./useLikes";
+import { useModal } from "../../../ui/Modal";
 
-function Post({ author, created_at, id, content, likes, images, comments }) {
+function Post({
+  created_at,
+  id,
+  content,
+  likes,
+  images,
+  comments,
+  avatar,
+  position,
+  name,
+  status,
+  setImageToView,
+}) {
   const { toggleLike, likedPosts, initialLikedPosts } = useLikes();
+
+  const { open } = useModal();
 
   const isLiked = likedPosts.has(id);
   const wasInitiallyLiked = initialLikedPosts.has(id);
@@ -20,6 +35,11 @@ function Post({ author, created_at, id, content, likes, images, comments }) {
     navigate(`/dashboard/forum/post?id=${id}`);
   }
 
+  function handleViewImage(e, image) {
+    e.stopPropagation();
+    setImageToView(image);
+    open("view image");
+  }
   return (
     <motion.div
       variants={settingsvariants.itemVariants}
@@ -30,19 +50,19 @@ function Post({ author, created_at, id, content, likes, images, comments }) {
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
             <img
-              src={author.image}
-              alt={author.name}
+              src={avatar}
+              alt={name}
               className="w-12 h-12 rounded-full object-cover"
             />
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="font-semibold">{author.name}</h3>
-                {author.verified && (
+                <h3 className="font-semibold">{name}</h3>
+                {status !== "STUDENT" && (
                   <BadgeCheck className="h-4 w-4 text-blue-500" />
                 )}
               </div>
               <div className="flex items-center gap-2 text-sm text-gray-600">
-                <span>{author.role}</span>
+                <span>{position}</span>
                 <span>•</span>
                 <span className="flex items-center gap-1">
                   <Clock className="h-4 w-4" />
@@ -52,10 +72,8 @@ function Post({ author, created_at, id, content, likes, images, comments }) {
             </div>
           </div>
         </div>
-
         {/* Post Content */}
         <p className="text-gray-800 mb-4">{content}</p>
-
         {/* Images */}
         {images && images.length > 0 && (
           <div
@@ -68,7 +86,12 @@ function Post({ author, created_at, id, content, likes, images, comments }) {
                 key={index}
                 src={image}
                 alt={`Post image ${index + 1}`}
-                className="w-full h-64 object-cover rounded-lg cursor-pointer"
+                onClick={(e) => handleViewImage(e, image)}
+                className={`${
+                  images.length > 2 ? "h-24 md:h-40" : "h-54"
+                } w-full object-cover rounded-lg cursor-pointer ${
+                  images.length === 3 && index === 2 ? "col-span-2" : ""
+                }`}
               />
             ))}
           </div>
