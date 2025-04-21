@@ -1,9 +1,9 @@
-import toast from "react-hot-toast";
-import { useGetUser } from "../../../hooks/useGetUser";
-import { useMutate } from "../../../hooks/useMutate";
-import { useModal } from "../../../ui/Modal";
-import { createPost } from "../../../services/Action";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { useUser } from "../../../context/UserProvider";
+import { useMutate } from "../../../hooks/useMutate";
+import { createPost } from "../../../services/Action";
+import { useModal } from "../../../ui/Modal";
 
 export function useCreatePost() {
   const [content, setContent] = useState("");
@@ -12,7 +12,8 @@ export function useCreatePost() {
   const [isDraft, setIsDraft] = useState(false);
 
   const maxImages = 4;
-  const { data } = useGetUser();
+
+  const { user_id } = useUser();
   const { close } = useModal();
 
   const { mutate, isPending } = useMutate(createPost, "create Post", "forum");
@@ -63,7 +64,7 @@ export function useCreatePost() {
     if (!content.trim()) return;
 
     mutate(
-      { content, images, id: data.id },
+      { content, images, id: user_id },
       {
         onSuccess: () => {
           toast.success("Post Sent!");

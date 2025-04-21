@@ -10,7 +10,7 @@ import {
 import { motion } from "framer-motion";
 import FadeInSection from "../../ui/FadeInSection";
 import QuickLink from "../../ui/QuickLinks";
-import Advertisements from "../../ui/Advertisements";
+import DeanMessage from "./DeanMessage";
 
 function Home() {
   return (
@@ -67,7 +67,7 @@ function Home() {
       </motion.header>
 
       {/* Content that scrolls over the fixed background */}
-      <div className="relative z-10 bg-white/90 backdrop-blur-md mt-screen">
+      <div className="relative z-10 bg-white/90 dark:bg-gray-900 backdrop-blur-md mt-screen">
         {/* Quick Links */}
         <FadeInSection>
           <section className="py-16 px-4 max-w-7xl mx-auto">
@@ -94,37 +94,11 @@ function Home() {
           </section>
         </FadeInSection>
 
-        {/* Dean's Message */}
-        <FadeInSection>
-          <section className="bg-white py-16 px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold mb-4">
-                  Message from the President
-                </h2>
-                <img
-                  src="/jamie.jpg"
-                  alt="Dean"
-                  className="w-48 h-48 rounded-full mx-auto mb-4 object-cover"
-                />
-              </div>
-              <blockquote className="text-gray-700 text-lg italic text-center">
-                I am excited to welcome you to the official website of the
-                Pharmaceutical Association of Nigerian Students, a student
-                organization within the Faculty of Pharmaceutical Sciences at
-                Enugu State University of Science and Technology. This website
-                is a resource for information about our Association, Faculty,
-                research initiatives, educational activities, and various
-                ongoing events. It has been an honor to serve as President of
-                this Association and Faculty.
-              </blockquote>
-            </div>
-          </section>
-        </FadeInSection>
+        <DeanMessage />
 
         {/* Research Highlights */}
         <FadeInSection>
-          <section className="py-16 px-4 bg-blue-50">
+          <section className="py-16 px-4 bg-blue-50 dark:bg-blue-950">
             <div className="max-w-7xl mx-auto">
               <h2 className="text-3xl font-bold text-center mb-12">
                 Research Excellence
@@ -145,14 +119,9 @@ function Home() {
           </section>
         </FadeInSection>
 
-        <FadeInSection>
-          <div className="p-8">
-            <Advertisements />
-          </div>
-        </FadeInSection>
         {/* Contact Information */}
         <FadeInSection>
-          <section className="bg-gray-900 text-white py-16 px-4">
+          <section className="bg-gray-800 text-white py-7 px-4">
             <div className="max-w-7xl mx-auto">
               <h2 className="text-3xl font-bold text-center mb-12">
                 Contact Us

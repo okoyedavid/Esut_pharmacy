@@ -8,7 +8,7 @@ function HomeLayout() {
     window.scrollTo({ top: 0, behavior: "smooth" }); // or behavior: "auto"
   }, []);
   return (
-    <main className="relative dark:bg-gradient-to-br from-gray-900 to-black">
+    <main className="relative dark:bg-gray-900">
       <Navbar />
       <Outlet />
       <Footer />

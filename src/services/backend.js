@@ -1,7 +1,7 @@
 import { supabase } from "./supabase";
 
-async function getData(table, filter) {
-  let query = supabase.from(table).select("*");
+async function getData(table, filter, select = "*") {
+  let query = supabase.from(table).select(select);
 
   if (Array.isArray(filter) || (filter?.column && filter?.value)) {
     if (Array.isArray(filter)) {
@@ -16,6 +16,7 @@ async function getData(table, filter) {
   const { data, error } = await query;
 
   if (error) {
+    console.log(error.message);
     console.error("There was an error fetching data:", error.message);
     return;
   }

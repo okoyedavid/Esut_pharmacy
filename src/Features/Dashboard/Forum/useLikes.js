@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useGetUser } from "../../../hooks/useGetUser";
+import { useForum } from "../../../context/ForumProvider";
+import { useUser } from "../../../context/UserProvider";
 import { getData } from "../../../services/backend";
 import { addLike, deleteLike } from "../../../services/forum";
-import { useForum } from "../../../context/ForumProvider";
 
 function useLikes() {
-  const { data } = useGetUser();
+  const { user_id } = useUser();
 
   const { likes } = useForum();
   const [likedPosts, setLikedPosts] = useState(new Set());
@@ -14,14 +14,14 @@ function useLikes() {
 
   useEffect(() => {
     if (likes) {
-      const hasLikes = likes.filter((item) => item.user_id === data.id);
+      const hasLikes = likes.filter((item) => item.user_id === user_id);
       if (hasLikes.length > 0) {
         const likeid = new Set(hasLikes.map((like) => like.post_id));
         setLikedPosts(likeid);
         setInitialLikedPosts(likeid);
       }
     }
-  }, [data.id, likes]);
+  }, [user_id, likes]);
 
   const toggleLike = async (postId, likes) => {
     setLikedPosts((prev) => {
@@ -35,17 +35,17 @@ function useLikes() {
     });
 
     const isLiked = await getData("likes", [
-      { column: "user_id", value: data.id },
+      { column: "user_id", value: user_id },
       { column: "post_id", value: postId },
       { column: "table", value: "forum" },
     ]);
 
     if (isLiked.length === 0) {
-      await addLike(data, likes, postId);
+      await addLike(user_id, likes, postId);
       return;
     }
 
-    await deleteLike(data, likes, postId);
+    await deleteLike(user_id, likes, postId);
   };
 
   return { toggleLike, likedPosts, initialLikedPosts };

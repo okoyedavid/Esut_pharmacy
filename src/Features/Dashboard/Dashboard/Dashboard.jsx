@@ -1,11 +1,10 @@
-import { useGetUser } from "../../../hooks/useGetUser";
-import UserCard from "./UserCard";
-import PendingPaymentsOverView from "./PendingPaymentsOverview";
+import { useUser } from "../../../context/UserProvider";
 import Notifications from "./Notifications";
+import PendingPaymentsOverView from "./PendingPaymentsOverview";
+import UserCard from "./UserCard";
 
 const Dashboard = () => {
-  const { data } = useGetUser();
-  const user = data.user_metadata;
+  const { user } = useUser();
 
   return (
     <div>

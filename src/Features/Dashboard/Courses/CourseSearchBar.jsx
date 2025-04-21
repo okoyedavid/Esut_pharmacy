@@ -12,7 +12,7 @@ function CourseSearchBar() {
 
   return (
     <motion.div variants={settingsvariants.itemVariants}>
-      <div className="bg-white shadow-md p-2 sm:p-4 rounded-xl mb-4">
+      <div className="bg-gray-50 dark:bg-gray-800 shadow-md p-2 sm:p-4 rounded-xl mb-4">
         <div className="flex flex-col md:flex-row gap-4 mb-4 ">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />

@@ -24,34 +24,34 @@ function ResultTable() {
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="bg-gray-50">
-                <th className="px-6 py-4 text-left font-medium text-gray-500">
+              <tr className="bg-gray-50 dark:bg-gray-950">
+                <th className="px-6 py-4 text-left font-medium text-gray-500 dark:text-gray-50">
                   Course Code
                 </th>
-                <th className="px-6 py-4 text-left font-medium text-gray-500">
+                <th className="px-6 py-4 text-left font-medium text-gray-500 dark:text-gray-50">
                   Title
                 </th>
-                <th className="px-6 py-4 text-center font-medium text-gray-500">
+                <th className="px-6 py-4 text-center font-medium text-gray-500 dark:text-gray-50">
                   Units
                 </th>
-                <th className="px-6 py-4 text-center font-medium text-gray-500">
+                <th className="px-6 py-4 text-center font-medium text-gray-500 dark:text-gray-50">
                   Quiz
                 </th>
-                <th className="px-6 py-4 text-center font-medium text-gray-500">
+                <th className="px-6 py-4 text-center font-medium text-gray-500 dark:text-gray-50">
                   Exam
                 </th>
-                <th className="px-6 py-4 text-center font-medium text-gray-500">
+                <th className="px-6 py-4 text-center font-medium text-gray-500 dark:text-gray-50">
                   Total
                 </th>
-                <th className="px-6 py-4 text-center font-medium text-gray-500">
+                <th className="px-6 py-4 text-center font-medium text-gray-500 dark:text-gray-50">
                   Grade
                 </th>
-                <th className="px-6 py-4 text-center font-medium text-gray-500">
+                <th className="px-6 py-4 text-center font-medium text-gray-500 dark:text-gray-50">
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200">
+            <tbody className="divide-y divide-gray-200 dark:divide-gray-900">
               {result.map((course) => (
                 <ResultsRow
                   key={course.id}

@@ -35,8 +35,11 @@ const ProgressCharts = () => {
   }));
 
   return (
-    <motion.div variants={settingsvariants.itemVariants}>
-      <div className="flex items-center justify-between mb-6">
+    <motion.div
+      className="rounded-xl shadow-sm py-4 mb-4 bg-gray-50 dark:bg-gray-800"
+      variants={settingsvariants.itemVariants}
+    >
+      <div className="flex items-center justify-between mb-4 ml-3">
         <h2 className="text-lg font-semibold">Course Progress Overview</h2>
       </div>
 

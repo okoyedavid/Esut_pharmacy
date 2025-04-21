@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Poetsen+One&display=swap");
 @import "tailwindcss";
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
@@ -7,19 +7,34 @@
   font-optical-sizing: auto;
   font-style: italic;
 }
-/* }
+
+.poetsen-one-regular {
+  font-family: "Poetsen One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
 
 @layer base {
-  html {
-    font-family: "Inter", sans-serif;
-  }
-
   h1 {
     font-size: 2.25rem;
     font-weight: 700;
     font-style: italic;
-    color: theme("colors.black");
+    color: theme("colors.gray.50");
   }
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] p {
+  color: theme("colors.gray.50");
+}
+
+[data-theme="dark"] html {
+  background-color: black;
+}
+
+/* }
 
   h2 {
     font-size: 1.875rem;
@@ -79,8 +94,8 @@
   }
 
  
-  [data-theme="dark"] h1,
-  [data-theme="dark"] h2,
+ 
+  /* [data-theme="dark"] h2,
   [data-theme="dark"] h3,
   [data-theme="dark"] h4,
   [data-theme="dark"] h5,
@@ -94,7 +109,7 @@
   [data-theme="dark"] ul,
   [data-theme="dark"] ol {
     color: theme("colors.gray.50");
-  }
+  } 
 
   [data-theme="dark"] input,
   [data-theme="dark"] textarea,

@@ -14,10 +14,7 @@ function Post({
   likes,
   images,
   comments,
-  avatar,
-  position,
-  name,
-  status,
+  users: { avatar, position, name, status },
   setImageToView,
 }) {
   const { toggleLike, likedPosts, initialLikedPosts } = useLikes();
@@ -43,7 +40,7 @@ function Post({
   return (
     <motion.div
       variants={settingsvariants.itemVariants}
-      className="bg-white rounded-xl shadow-sm overflow-hidden"
+      className="bg-gray-50 dark:bg-gray-800  rounded-xl shadow-sm overflow-hidden"
     >
       {/* Post Header */}
       <div className="p-4" onClick={() => handleClick(id)}>
@@ -56,15 +53,15 @@ function Post({
             />
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="font-semibold">{name}</h3>
+                <h3 className="font-semibold dark:text-gray-50">{name}</h3>
                 {status !== "STUDENT" && (
                   <BadgeCheck className="h-4 w-4 text-blue-500" />
                 )}
               </div>
               <div className="flex items-center gap-2 text-sm text-gray-600">
-                <span>{position}</span>
+                <span className="dark:text-gray-100">{position}</span>
                 <span>•</span>
-                <span className="flex items-center gap-1">
+                <span className="flex dark:text-gray-50 items-center gap-1">
                   <Clock className="h-4 w-4" />
                   {formatTimestamp(created_at)}
                 </span>
@@ -73,7 +70,7 @@ function Post({
           </div>
         </div>
         {/* Post Content */}
-        <p className="text-gray-800 mb-4">{content}</p>
+        <p className="text-gray-800 dark:text-gray-50 mb-4">{content}</p>
         {/* Images */}
         {images && images.length > 0 && (
           <div
@@ -98,32 +95,34 @@ function Post({
         )}
 
         <div className="flex items-center justify-between pt-4">
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 ">
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 toggleLike(id, likes);
               }}
               className={`flex items-center gap-2 ${
-                likedPosts.has(id) ? "text-red-500" : "text-gray-600"
+                likedPosts.has(id)
+                  ? "text-red-500"
+                  : "text-gray-600 dark:text-gray-50"
               }`}
             >
               {likedPosts.has(id) ? (
                 <AiFillHeart className={`h-5 text-red-600 w-5`} />
               ) : (
-                <Heart className={` h-5 w-5`} />
+                <Heart className={`dark:text-gray-50 h-5 w-5`} />
               )}
 
               <span>{likes + likeDiff}</span>
             </button>
             <button
               onClick={() => handleClick(id)}
-              className="flex items-center gap-2 text-gray-600"
+              className="flex items-center gap-2 dark:text-gray-50  text-gray-600"
             >
               <MessageCircle className="h-5 w-5" />
               <span>{comments}</span>
             </button>
-            <button className="text-gray-600">
+            <button className="text-gray-600 dark:text-gray-50">
               <Share2 className="h-5 w-5" />
             </button>
           </div>

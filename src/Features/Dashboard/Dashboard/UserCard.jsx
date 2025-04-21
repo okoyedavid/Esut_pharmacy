@@ -5,7 +5,7 @@ function UserCard({ user }) {
     <motion.div
       initial={{ scale: 0.95, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
-      className="bg-white p-6 rounded-xl col-span-2 shadow-sm"
+      className="bg-white dark:bg-gray-900 p-6 rounded-xl col-span-2 shadow-sm"
     >
       <div className="flex items-center gap-6 mb-6">
         <img
@@ -15,7 +15,9 @@ function UserCard({ user }) {
         />
         <div>
           <h1 className="text-2xl font-bold text-gray-800">{user.name}</h1>
-          <p className="text-gray-600">PharmD Program - {user.level}</p>
+          <p className="text-gray-600 dark:text-gray-50">
+            PharmD Program - {user.level} Level
+          </p>
           <div className="mt-2 inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-50 text-blue-600">
             Advanced Standing
           </div>

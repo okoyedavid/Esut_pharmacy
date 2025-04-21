@@ -1,23 +1,11 @@
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  Calendar,
-  MessageCircle,
-  Share2,
-  BookMarked as BookMark,
-  Heart,
-  Clock,
-  MapPin,
-  Ticket,
-} from "lucide-react";
+import { Calendar, Clock, MapPin, Ticket } from "lucide-react";
 import Button from "../../ui/Button";
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
 import { useGetData } from "../../hooks/useGetData";
 import SpinnerFullPage from "../../ui/SpinnerFullPage";
 
 function NewsInfo() {
-  const [bookmarkedPosts, setBookmarkedPosts] = useState(new Set());
-  const [likedPosts, setLikedPosts] = useState(new Set());
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const selectedCategory = searchParams.get("id") || "all";
@@ -29,30 +17,6 @@ function NewsInfo() {
   const update = updates.filter(
     (item) => item.id === Number(selectedCategory)
   )[0];
-
-  const toggleBookmark = (id) => {
-    setBookmarkedPosts((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(id)) {
-        newSet.delete(id);
-      } else {
-        newSet.add(id);
-      }
-      return newSet;
-    });
-  };
-
-  const toggleLike = (id) => {
-    setLikedPosts((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(id)) {
-        newSet.delete(id);
-      } else {
-        newSet.add(id);
-      }
-      return newSet;
-    });
-  };
 
   return (
     <AnimatePresence>
@@ -91,7 +55,7 @@ function NewsInfo() {
           <p className="text-gray-600 mb-6">{update.description}</p>
 
           {update.venue && (
-            <div className="bg-gray-50 p-4 rounded-lg mb-6">
+            <div className="bg-gray-50  dark:bg-gray-800  p-4 rounded-lg mb-6">
               <h3 className="font-semibold mb-2">Event Details</h3>
               <div className="space-y-2">
                 <p className="flex items-center gap-2">
@@ -113,7 +77,7 @@ function NewsInfo() {
           )}
 
           {update.ticketPrice && (
-            <div className="bg-blue-50 p-4 rounded-lg mb-6">
+            <div className="bg-blue-50  dark:bg-gray-800 p-4 rounded-lg mb-6">
               <h3 className="font-semibold mb-2">Ticket Information</h3>
               <p className="text-lg font-bold text-blue-600">
                 {update.ticketPrice}
@@ -140,45 +104,6 @@ function NewsInfo() {
               ))}
             </div>
           )}
-
-          <div className="flex items-center justify-between pt-4 border-t">
-            <div className="flex items-center gap-4">
-              <button
-                onClick={() => toggleLike(update.id)}
-                className={`flex items-center gap-1 ${
-                  likedPosts.has(update.id) ? "text-red-600" : "text-gray-600"
-                }`}
-              >
-                <Heart className="h-5 w-5" />
-                <span>
-                  {update.likes + (likedPosts.has(update.id) ? 1 : 0)}
-                </span>
-              </button>
-              <button className="flex items-center gap-1 text-gray-600">
-                <MessageCircle className="h-5 w-5" />
-                <span>{update.comments}</span>
-              </button>
-            </div>
-            <div className="flex items-center gap-2">
-              <Button
-                variant="secondary"
-                size="sm"
-                icon={<Share2 className="h-4 w-4" />}
-              >
-                Share
-              </Button>
-              <Button
-                variant={
-                  bookmarkedPosts.has(update.id) ? "primary" : "secondary"
-                }
-                size="sm"
-                icon={<BookMark className="h-4 w-4" />}
-                onClick={() => toggleBookmark(update.id)}
-              >
-                {bookmarkedPosts.has(update.id) ? "Saved" : "Save"}
-              </Button>
-            </div>
-          </div>
         </div>
       </motion.div>
     </AnimatePresence>

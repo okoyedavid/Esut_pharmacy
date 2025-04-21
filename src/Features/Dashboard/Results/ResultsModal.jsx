@@ -1,15 +1,15 @@
+import { motion } from "framer-motion";
 import { Save } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useUser } from "../../../context/UserProvider";
+import { useMutate } from "../../../hooks/useMutate";
+import { getData, insertData, updateTable } from "../../../services/backend";
 import Button from "../../../ui/Button";
 import Modal, { useModal } from "../../../ui/Modal";
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import { calculateGradePoint } from "../../../utils/helper";
-import { getData, insertData, updateTable } from "../../../services/backend";
-import { useGetUser } from "../../../hooks/useGetUser";
-import { useMutate } from "../../../hooks/useMutate";
 
 const ResultModal = ({ course }) => {
-  const { data: user } = useGetUser();
+  const { user, user_id } = useUser();
   const { close } = useModal();
   const [scores, setScores] = useState([]);
 
@@ -24,7 +24,7 @@ const ResultModal = ({ course }) => {
     if (isPresent.length === 0) {
       await insertData("assessments", [
         {
-          user_id: user.id,
+          user_id: user_id,
           course_id: course.id,
           grade,
           percentage,

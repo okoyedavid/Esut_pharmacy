@@ -30,20 +30,22 @@ function ResourceModal({ resource }) {
           </div>
         </div>
 
-        <div className="p-2 bg-blue-200 rounded-xl mb-6">
-          <p className="text-gray-700">{resource.description}</p>
+        <div className="p-2 bg-blue-200 dark:bg-blue-400 rounded-xl mb-6">
+          <p className="text-gray-700 dark:text-gray-300">
+            {resource.description}
+          </p>
         </div>
 
         <div className="grid grid-cols-3 gap-4 mb-6">
-          <div className="bg-gray-50 p-3 rounded-lg text-center">
+          <div className="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg text-center">
             <p className="text-sm text-gray-600 mb-1">Year</p>
             <p className="text-lg font-bold">{resource.year}</p>
           </div>
-          <div className="bg-gray-50 p-3 rounded-lg text-center">
+          <div className="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg text-center">
             <p className="text-sm text-gray-600 mb-1">Semester</p>
             <p className="text-lg font-bold">{resource.semester}</p>
           </div>
-          <div className="bg-gray-50 p-3 rounded-lg text-center">
+          <div className="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg text-center">
             <p className="text-sm text-gray-600 mb-1">Department</p>
             <p className="text-lg font-bold">{resource.department}</p>
           </div>

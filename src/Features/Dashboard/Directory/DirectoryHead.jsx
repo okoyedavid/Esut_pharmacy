@@ -5,10 +5,10 @@ function DirectoryHead() {
   const { itemVariants } = settingsvariants;
   return (
     <motion.div variants={itemVariants} className="text-center mb-12">
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+      <h1 className="text-3xl md:text-4xl font-bold dark:text-gray-50 text-gray-900 mb-4">
         Meet Our Student Executives
       </h1>
-      <p className="text-gray-600 max-w-2xl mx-auto">
+      <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
         Dedicated leaders working together to enhance the academic and social
         experience of every pharmacy student
       </p>

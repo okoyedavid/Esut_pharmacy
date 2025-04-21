@@ -15,7 +15,7 @@ function NewsHome() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50  pt-18 px-2">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900  pt-18 px-2">
       <motion.div
         ref={ref}
         initial="hidden"

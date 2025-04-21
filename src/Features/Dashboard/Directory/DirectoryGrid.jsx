@@ -9,7 +9,7 @@ import {
   Mail,
 } from "lucide-react";
 import Button from "../../../ui/Button";
-import SpinnerFullPage from "../../../ui/SpinnerFullPage";
+import LoadingGrid from "../../../ui/LoadingGrid";
 import { settingsvariants } from "../../../utils/Constants";
 import { useState } from "react";
 import { useGetData } from "../../../hooks/useGetData";
@@ -27,7 +27,7 @@ function DirectoryGrid() {
     }
   };
 
-  if (isLoading) return <SpinnerFullPage />;
+  if (isLoading) return <LoadingGrid parent={7} kids={2} />;
   const executives = data.map((item) => {
     return { ...item, contacts: JSON.parse(item.contacts) };
   });
@@ -59,7 +59,7 @@ function DirectoryGrid() {
             </div>
           </div>
 
-          <div className="p-6">
+          <div className="p-6 dark:bg-gray-950">
             <div className="flex items-center gap-2 mb-4">
               <span className="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm font-medium">
                 {executive?.level} Level

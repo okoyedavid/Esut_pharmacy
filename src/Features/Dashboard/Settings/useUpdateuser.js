@@ -1,8 +1,8 @@
-import { useGetUser } from "../../../hooks/useGetUser";
-import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { updateCurrentUser } from "../../../services/ApiAuth";
+import { useForm } from "react-hook-form";
+import { useUser } from "../../../context/UserProvider";
 import { useMutate } from "../../../hooks/useMutate";
+import { updateCurrentUser } from "../../../services/ApiAuth";
 
 function useUpdateUser() {
   const { mutate, isPending } = useMutate(
@@ -10,14 +10,8 @@ function useUpdateUser() {
     "update user",
     "user"
   );
-  const { data } = useGetUser();
-  const {
-    name,
-    level,
-    phone_no,
-    username,
-    avatar: oldAvatar,
-  } = data.user_metadata;
+  const { user, user_email } = useUser();
+  const { name, level, phone_no, username, avatar: oldAvatar } = user;
 
   const [avatar, setAvatar] = useState(null);
   const [image, setImage] = useState(oldAvatar);
@@ -29,7 +23,7 @@ function useUpdateUser() {
     defaultValues: {
       name,
       level,
-      email: data.email,
+      email: user_email,
       phone_no,
       username,
     },

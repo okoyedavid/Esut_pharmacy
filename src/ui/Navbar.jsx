@@ -1,23 +1,23 @@
+import { motion } from "framer-motion";
 import {
   Home,
   Info,
-  Newspaper,
-  Menu,
-  X,
   LogIn,
+  Menu,
+  Newspaper,
   UserCircle2Icon,
+  X,
 } from "lucide-react";
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { useGetUser } from "../hooks/useGetUser";
+import { useUser } from "../context/UserProvider";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { isAuthenticated } = useGetUser();
+  const { isAuthenticated } = useUser();
 
   return (
-    <nav className="w-full z-50 fixed bg-white/80 backdrop-blur-md shadow-md">
+    <nav className="w-full z-50 fixed bg-white/80 dark:bg-gray-900 backdrop-blur-md shadow-md">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
@@ -25,28 +25,30 @@ function Navbar() {
               src="/logo.png"
               className="h-12 w-12 border-2 rounded-full border-blue-600"
             />
-            <span className="ml-2 text-xl font-bold">Faculty of Pharmacy</span>
+            <span className="ml-2 text-xl font-bold dark:text-gray-50">
+              Faculty of Pharmacy
+            </span>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <Link
               to={"/"}
-              className="text-gray-700 hover:text-blue-600 flex items-center gap-2"
+              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 flex items-center gap-2"
             >
               <Home className="h-4 w-4" />
               Home
             </Link>
             <Link
               to={"/about"}
-              className="text-gray-700 hover:text-blue-600 flex items-center gap-2"
+              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 flex items-center gap-2"
             >
               <Info className="h-4 w-4" />
               About
             </Link>
             <Link
               to={"/news"}
-              className="text-gray-700 hover:text-blue-600 flex items-center gap-2"
+              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 flex items-center gap-2"
             >
               <Newspaper className="h-4 w-4" />
               News

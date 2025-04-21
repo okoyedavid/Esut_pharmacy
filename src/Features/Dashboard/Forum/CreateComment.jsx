@@ -1,15 +1,14 @@
 import { Loader, Send } from "lucide-react";
 import { useState } from "react";
-import { useGetUser } from "../../../hooks/useGetUser";
-import { useMutate } from "../../../hooks/useMutate";
 import toast from "react-hot-toast";
+import { useMutate } from "../../../hooks/useMutate";
 import { handleCreateComment } from "../../../services/forum";
+import { useUser } from "../../../context/UserProvider";
 
 function CreateComment({ id, commentsNo }) {
   const [comment, setComment] = useState("");
-  const { data } = useGetUser();
-
-  const { avatar } = data.user_metadata;
+  const { user } = useUser();
+  const { avatar } = user;
 
   const { mutate, isPending } = useMutate(
     handleCreateComment,

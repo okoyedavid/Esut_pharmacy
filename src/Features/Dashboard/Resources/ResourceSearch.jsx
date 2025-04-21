@@ -11,7 +11,7 @@ function ResourceSearch() {
   return (
     <motion.div
       variants={settingsvariants.itemVariants}
-      className="rounded-xl shadow-sm p-6 mb-8"
+      className="rounded-xl shadow-sm dark:bg-gray-800 p-6 mb-8"
     >
       <div className="flex flex-col md:flex-row gap-4 mb-6">
         <div className="flex-1 relative">

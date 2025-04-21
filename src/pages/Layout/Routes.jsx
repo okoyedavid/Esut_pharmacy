@@ -19,6 +19,9 @@ import Directory from "../DashboardPages/Directory.jsx";
 import Forum from "../DashboardPages/Forum.jsx";
 import ForumPost from "../../Features/Dashboard/Forum/ForumPost.jsx";
 import ForumHome from "../../Features/Dashboard/Forum/ForumHome.jsx";
+import Voting from "../Voting.jsx";
+import AdminPage from "../Admin.jsx";
+import VotingList from "../../Features/voting/VotingList.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -52,7 +55,10 @@ export const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       { element: <HomePage />, path: "/" },
+      { element: <Voting />, path: "/voting" },
+      { element: <VotingList />, path: "/voting/list" },
       { element: <AuthPage />, path: "/auth" },
+      { element: <AdminPage />, path: "/admin" },
       {
         path: "/about",
         element: <About />,

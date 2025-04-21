@@ -38,7 +38,7 @@ function CourseOverview() {
       variants={settingsvariants.itemVariants}
       className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-6"
     >
-      <Wrapper>
+      <Wrapper light>
         <div className="flex items-center justify-between mb-4">
           <div className="p-3 bg-blue-100 rounded-lg">
             <GraduationCap className="h-6 w-6 text-blue-600" />
@@ -49,7 +49,7 @@ function CourseOverview() {
         <p className="text-gray-600 text-sm">Current CGPA</p>
       </Wrapper>
 
-      <Wrapper>
+      <Wrapper light>
         <div className="flex items-center justify-between mb-4">
           <div className="p-3 bg-green-100 rounded-lg">
             <Award className="h-6 w-6 text-green-600" />
@@ -59,7 +59,7 @@ function CourseOverview() {
         <h3 className="text-xl font-bold mb-1">{classification}</h3>
       </Wrapper>
 
-      <Wrapper>
+      <Wrapper light>
         <div className="flex items-center justify-between mb-4">
           <div className="p-3 bg-yellow-100 rounded-lg">
             <BookOpen className="h-6 w-6 text-yellow-600" />
@@ -72,7 +72,7 @@ function CourseOverview() {
         <p className="text-gray-600 text-sm">Units Completed</p>
       </Wrapper>
 
-      <Wrapper>
+      <Wrapper light>
         <div className="flex items-center justify-between mb-4">
           <div className="p-3 bg-purple-100 rounded-lg">
             <TrendingUp className="h-6 w-6 text-purple-600" />
@@ -84,7 +84,7 @@ function CourseOverview() {
       </Wrapper>
 
       {totalUnits !== threshold_unit && (
-        <p className="text-sm col-span-2 text-yellow-700 bg-yellow-100 p-2 rounded-md mt-4 border border-yellow-300">
+        <p className="text-sm col-span-2 text-yellow-700 bg-yellow-100 dark:bg-yellow-900 dark:border-yellow-500 p-2 rounded-md mt-4 border border-yellow-300">
           CGPA is based on filled course grades. To view a complete cumulative
           CGPA, fill in all course grades from previous levels.
         </p>

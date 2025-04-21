@@ -26,18 +26,18 @@ function ForumPost() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img
-              src={post.avatar}
-              alt={post.name}
+              src={post.users.avatar}
+              alt={post.users.name}
               className="w-12 h-12 rounded-full object-cover"
             />
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="font-semibold">{post.name}</h3>
-                {post.status !== "STUDENT" && (
+                <h3 className="font-semibold">{post.users.name}</h3>
+                {post.users.status !== "STUDENT" && (
                   <BadgeCheck className="h-4 w-4 text-blue-500" />
                 )}
               </div>
-              <p className="text-sm text-gray-600">{post.position}</p>
+              <p className="text-sm text-gray-600">{post.users.position}</p>
             </div>
           </div>
         </div>

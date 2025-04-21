@@ -4,28 +4,18 @@ import { useGetData } from "../../../hooks/useGetData";
 import CreateComment from "./CreateComment";
 
 function Comment({ id, commentsNo }) {
-  const { data: comments, isLoading } = useGetData("comments", {
-    column: "post_id",
-    value: id,
-  });
+  const { data: comments, isLoading } = useGetData(
+    "comments",
+    {
+      column: "post_id",
+      value: id,
+    },
+    "*, users(name, avatar, position, status)"
+  );
 
-  const { data, isLoading: loadingusers } = useGetData("users");
+  if (isLoading) return <p>Loading comments..............</p>;
 
-  if (isLoading || loadingusers) return <p>Loading comments..............</p>;
-
-  const totalComments = comments.map((item) => {
-    const users = data.filter((user) => user.user_id === item.user_id)[0];
-
-    return {
-      ...item,
-      name: users.name,
-      avatar: users.avatar,
-      position: users.position,
-      status: users.status,
-    };
-  });
-
-  const currentComments = [...totalComments].reverse();
+  const currentComments = [...comments].reverse();
 
   return (
     <div>
@@ -35,14 +25,14 @@ function Comment({ id, commentsNo }) {
           {currentComments.map((comment) => (
             <div key={comment.id} className="flex gap-3">
               <img
-                src={comment.avatar}
-                alt={comment.name}
+                src={comment.users.avatar}
+                alt={comment.users.name}
                 className="w-8 h-8 rounded-full object-cover"
               />
               <div className="flex-1">
                 <div className="flex items-center gap-2">
                   <span className="font-medium">{comment?.name}</span>
-                  {comment?.status !== "STUDENT" && (
+                  {comment?.users.status !== "STUDENT" && (
                     <BadgeCheck className="h-4 w-4 text-blue-500" />
                   )}
                 </div>

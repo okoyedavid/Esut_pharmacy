@@ -12,7 +12,7 @@ function ResultsSearch() {
   return (
     <motion.div
       variants={settingsvariants.itemVariants}
-      className="rounded-xl shadow-sm p-2 sm:p-6 mb-8"
+      className="rounded-xl dark:bg-gray-800 shadow-sm p-2 sm:p-6 mb-8"
     >
       <div className="flex flex-col md:flex-row gap-4 mb-6">
         <div className="flex-1 relative">
@@ -32,11 +32,11 @@ function ResultsSearch() {
           {levels.map((currentlevel) => (
             <button
               key={currentlevel.value}
-              onClick={() => setParams({ level: currentlevel })}
-              className={`px-2 sm:px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+              onClick={() => setParams({ level: currentlevel.value })}
+              className={`px-2 sm:px-4 py-2  rounded-lg text-sm font-medium transition-colors ${
                 level === currentlevel.value
                   ? "bg-blue-100 text-blue-600"
-                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                  : "bg-gray-100 dark:bg-gray-900 dark:text-gray-300 text-gray-600 dark:hover:bg-gray-700 hover:bg-gray-200"
               }`}
             >
               {currentlevel.label}
@@ -53,7 +53,7 @@ function ResultsSearch() {
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 currentsemester === semester.id
                   ? "bg-blue-100 text-blue-600"
-                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                  : "bg-gray-100 dark:bg-gray-900 dark:text-gray-300 text-gray-600 dark:hover:bg-gray-700 hover:bg-gray-200"
               }`}
             >
               {semester.label}

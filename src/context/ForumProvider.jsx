@@ -1,35 +1,34 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useGetData } from "../hooks/useGetData";
-import SpinnerFullPage from "../ui/SpinnerFullPage";
 
 const Forum = createContext();
 
 function ForumProvider({ children }) {
-  const { data: posts, isLoading } = useGetData("forum");
-  const { data: users, isLoading: isLoadingUsers } = useGetData("users");
+  const [totalPosts, setTotalPosts] = useState([]);
+  const { data: posts, isLoading } = useGetData(
+    "forum",
+    null,
+    "*, users(name, position, avatar, status)"
+  );
 
   const { data: likes, isLoadingLikes } = useGetData("likes", {
     column: "table",
     value: "forum",
   });
 
-  if ((isLoading || isLoadingLikes, isLoadingUsers)) return <SpinnerFullPage />;
+  useEffect(() => {
+    if (!isLoadingLikes && !isLoading) {
+      const sortedPosts = posts.sort((a, b) => {
+        return new Date(b.created_at) - new Date(a.created_at);
+      });
+      setTotalPosts(sortedPosts);
+    }
+  }, [isLoadingLikes, isLoading, posts]);
 
-  const forumPosts = posts?.map((post) => {
-    const user = users.filter((us) => us.user_id === post.user_id)[0];
-
-    return {
-      ...post,
-      avatar: user.avatar,
-      name: user.name,
-      position: user.position,
-      status: user.status,
-    };
-  });
-
-  const totalPosts = [...forumPosts].reverse();
   return (
-    <Forum.Provider value={{ totalPosts, likes }}>{children}</Forum.Provider>
+    <Forum.Provider value={{ totalPosts, likes, isLoadingLikes, isLoading }}>
+      {children}
+    </Forum.Provider>
   );
 }
 

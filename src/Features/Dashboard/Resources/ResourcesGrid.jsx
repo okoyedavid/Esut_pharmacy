@@ -42,7 +42,7 @@ function ResourceGrid() {
           key={resource.id}
           variants={settingsvariants.itemVariants}
           whileHover={{ y: -4 }}
-          className="rounded-xl shadow-sm overflow-hidden cursor-pointer group"
+          className="rounded-xl shadow-sm dark:bg-gray-800 overflow-hidden cursor-pointer group"
           onClick={() => handleClick(resource)}
         >
           {resource.cover_image ? (
@@ -72,29 +72,29 @@ function ResourceGrid() {
               </>
             )}
             <div className="flex items-center mb-2">
-              <span className="bg-gray-300 text-sm px-2 mr-2 text-gray-500 rounded-xl">
+              <span className="bg-gray-300 text-sm px-2 mr-2 text-gray-500 dark:text-gray-50 dark:bg-gray-400 rounded-xl">
                 {resource.year}
               </span>
-              <span className="bg-gray-300 text-sm px-2 mr-2 text-gray-500 rounded-xl">
+              <span className="bg-gray-300 text-sm px-2 mr-2 text-gray-500 dark:text-gray-50 dark:bg-gray-400 rounded-xl">
                 {resource.department}
               </span>
-              <span className="bg-gray-300 text-sm px-2 text-gray-500 rounded-xl">
+              <span className="bg-gray-300 text-sm px-2 text-gray-500 dark:text-gray-50 dark:bg-gray-400 rounded-xl">
                 {resource.semester} semester
               </span>
             </div>
             <div className="mb-4">
-              <span className="text-sm">
+              <span className="text-sm dark:text-gray-50">
                 {resource.description.slice(0, 80)}......
               </span>
             </div>
 
             <div className="flex items-center justify-between ">
-              <span className="flex items-center gap-1 text-sm text-gray-600">
+              <span className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-50">
                 <Clock className="h-4 w-4" />
                 {new Date(resource.created_at).toLocaleDateString()}
               </span>
 
-              <Download className="h-7 w-7" />
+              <Download className="h-7 w-7 dark:text-gray-50" />
             </div>
           </div>
         </motion.div>

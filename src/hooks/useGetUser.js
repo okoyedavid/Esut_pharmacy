@@ -10,7 +10,6 @@ function useGetUser() {
   return {
     isLoading,
     data,
-    isAuthenticated: data?.role === "authenticated" || data === "authenticated",
   };
 }
 

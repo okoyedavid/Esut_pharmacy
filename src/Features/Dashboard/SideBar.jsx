@@ -7,13 +7,13 @@ import {
   Library,
   Settings,
 } from "lucide-react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SettingsNav from "./Settings/SettingsNav";
 import { useState } from "react";
-import { useGetUser } from "../../hooks/useGetUser";
+import { useUser } from "../../context/UserProvider";
 
 function SideBar({ isOpen, onClose }) {
-  const { data: user } = useGetUser();
+  const { user } = useUser();
   const [settingsOpen, setSettingsOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -35,15 +35,13 @@ function SideBar({ isOpen, onClose }) {
       label: "Dashboard",
     },
     {
-      path: `/dashboard/courses?level=${user.user_metadata?.level?.match(
-        /\d+(\.\d+)?/g
-      )}&semester=first`,
+      path: `/dashboard/courses?level=${user?.level}&semester=first`,
       icon: BookOpen,
       label: "Courses",
     },
     { path: "/dashboard/resources", icon: Library, label: "Resources" },
     {
-      path: `/dashboard/results?level=${user.user_metadata?.level?.match(
+      path: `/dashboard/results?level=${user?.level?.match(
         /\d+(\.\d+)?/g
       )}&semester=first`,
       icon: FileText,
@@ -76,17 +74,17 @@ function SideBar({ isOpen, onClose }) {
             animate={{ x: 0 }}
             exit={{ x: -300 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className={`fixed bg-white z-50 lg:static lg:block top-0 left-0 h-full w-64 
+            className={`fixed bg-white dark:bg-gray-900 z-50 lg:static lg:block top-0 left-0 h-full w-64 
              shadow-lg ${!isOpen && "hidden lg:block"}
             `}
           >
             <div className="p-4 ">
-              <div className="flex items-center gap-3 mb-8">
+              <Link to={"/"} className="flex items-center gap-3 mb-8">
                 <img src="/logo.png" className="h-8 w-8" />
                 <h1 className="text-xl font-bold text-gray-800 dark:text-white">
                   ESUT Portal
                 </h1>
-              </div>
+              </Link>
 
               <div className="space-y-2">
                 {sidebarLinks.map((link, index) => {

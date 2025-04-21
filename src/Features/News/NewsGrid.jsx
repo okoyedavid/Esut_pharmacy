@@ -55,14 +55,14 @@ function NewsGrid() {
   return (
     <motion.div
       variants={containerVariants}
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      className="grid grid-cols-1 md:grid-cols-2 py-8 lg:grid-cols-3  gap-6"
     >
       {filteredUpdates.map((update) => (
         <motion.div
           key={update.id}
           variants={itemVariants}
           whileHover={{ y: -4 }}
-          className="rounded-xl shadow-sm overflow-hidden cursor-pointer"
+          className="rounded-xl shadow-sm overflow-hidden  dark:bg-gray-800 cursor-pointer"
           onClick={() => navigate(`/news/update?id=${update.id}`)}
         >
           <div className="relative">

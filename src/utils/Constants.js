@@ -86,3 +86,80 @@ export const departments = [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHzXahzfoZ52n4CpvYeJ-hXZzDGDyODuqmUg&s",
   },
 ];
+
+export const event = {
+  active: true,
+  description: "Annual Pharmaceutical Association of Nigerian Students Week",
+  endDate: "2025-04-22T06:12:23.041Z",
+  id: 1,
+  startDate: "2025-04-15T06:12:23.041Z",
+  title: "PANS Week 2025",
+  votePrice: 50,
+};
+
+export const sampleVoters = [
+  {
+    id: 1,
+    name: "John Smith",
+    category: "Best Actor",
+    votes: 1234,
+    image:
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: 2,
+    name: "Emma Watson",
+    category: "Best Actress",
+    votes: 2345,
+    image:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: 3,
+    name: "Christopher Nolan",
+    category: "Best Director",
+    votes: 3456,
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: 4,
+    name: "Meryl Streep",
+    category: "Best Supporting Actress",
+    votes: 4567,
+    image:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: 331,
+    name: "John Smith",
+    category: "Best Actor",
+    votes: 1234,
+    image:
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: 32232,
+    name: "Emma Watson",
+    category: "Best Actress",
+    votes: 2345,
+    image:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: 333,
+    name: "Christopher Nolan",
+    category: "Best Director",
+    votes: 3456,
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: 444,
+    name: "Meryl Streep",
+    category: "Best Supporting Actress",
+    votes: 4567,
+    image:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+  },
+];

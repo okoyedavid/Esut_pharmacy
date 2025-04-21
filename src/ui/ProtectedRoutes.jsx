@@ -1,19 +1,16 @@
 import { useEffect } from "react";
-import { useGetUser } from "../hooks/useGetUser";
-import SpinnerFullPage from "./SpinnerFullPage";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/UserProvider";
 
 function ProtectedRoutes({ children }) {
   const navigate = useNavigate();
-  const { isLoading, isAuthenticated } = useGetUser();
+  const { isAuthenticated } = useUser();
 
   useEffect(() => {
-    if (!isAuthenticated && !isLoading) {
+    if (!isAuthenticated) {
       navigate("/auth");
     }
-  }, [isAuthenticated, navigate, isLoading]);
-
-  if (isLoading) return <SpinnerFullPage />;
+  }, [isAuthenticated, navigate]);
 
   if (isAuthenticated) return children;
 }

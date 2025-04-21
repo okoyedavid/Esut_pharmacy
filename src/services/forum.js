@@ -12,9 +12,9 @@ export async function handleCreateComment({ commentsNo, comment, id }) {
   );
 }
 
-export async function deleteLike(data, likes, postId) {
+export async function deleteLike(user_id, likes, postId) {
   await deleteData("likes", [
-    { column: "user_id", value: data.id },
+    { column: "user_id", value: user_id },
     { column: "post_id", value: postId },
     { column: "table", value: "forum" },
   ]);
@@ -26,9 +26,9 @@ export async function deleteLike(data, likes, postId) {
   );
 }
 
-export async function addLike(data, likes, postId) {
+export async function addLike(user_id, likes, postId) {
   await insertData("likes", {
-    user_id: data.id,
+    user_id,
     post_id: postId,
     table: "forum",
   });

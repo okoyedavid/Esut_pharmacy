@@ -17,7 +17,7 @@ function AboutPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white py-4 dark:bg-gray-900">
       <div className="relative">
         <img
           src="/Esut.png"
@@ -65,7 +65,7 @@ function AboutPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.2 }}
-              className="bg-white/10 shadow-blue-200 shadow-md backdrop-blur-sm rounded-xl p-6 text-center hover:bg-black/10 transition-colors"
+              className="bg-white/10 shadow-blue-200 dark:shadow-blue-950 shadow-md backdrop-blur-sm rounded-xl p-6 text-center hover:bg-black/10 transition-colors"
             >
               <stat.icon className="w-12 h-12 text-blue-300 mx-auto mb-4" />
               <h3 className="text-3xl font-bold text-black mb-2">
@@ -127,7 +127,7 @@ function AboutPage() {
               <motion.div
                 key={index}
                 whileHover={{ y: -5 }}
-                className="bg-white/10 shadow-blue-200 shadow-md backdrop-blur-sm rounded-xl p-4 hover:bg-black/10 "
+                className="bg-white/10 dark:shadow-blue-950 shadow-blue-200 shadow-md backdrop-blur-sm rounded-xl p-4 hover:bg-black/10 "
               >
                 <feature.icon className="w-8 h-8 text-blue-600 mb-3" />
                 <h3 className="text-black font-semibold mb-1">
@@ -147,7 +147,7 @@ function AboutPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-4 bg-white/10 shadow-blue-200 shadow-md hover:bg-black/10 backdrop-blur-lg rounded-xl p-8 "
+          className="text-center bg-white/10 dark:shadow-blue-950 shadow-blue-200 shadow-md  backdrop-blur-lg rounded-xl p-8 "
         >
           <h2 className="text-3xl font-bold text-black mb-4">
             Stay Connected with Us

@@ -1,13 +1,12 @@
 import { Bell, Menu, MessageSquare, Users } from "lucide-react";
-import { useGetUser } from "../../hooks/useGetUser";
 import { Link } from "react-router-dom";
+import { useUser } from "../../context/UserProvider";
 
 function Header({ onToggleSidebar }) {
-  const { data } = useGetUser();
-  const user = data?.user_metadata;
+  const { user } = useUser();
 
   return (
-    <header className="shadow-sm dark:shadow-md sm:relative bg-white sm:w-auto fixed w-full z-40">
+    <header className="shadow-sm dark:shadow-md dark:bg-gray-900 sm:relative bg-white sm:w-auto fixed w-full z-40">
       <div className="flex items-center md:justify-between px-4 md:px-8 py-4">
         <button onClick={onToggleSidebar} className="lg:hidden">
           <Menu className="h-6 w-6 text-gray-700 dark:text-gray-300" />

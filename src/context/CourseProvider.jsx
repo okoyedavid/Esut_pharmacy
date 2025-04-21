@@ -1,14 +1,15 @@
 import { createContext, useContext } from "react";
-import { useGetData } from "../hooks/useGetData";
-import { useGetUser } from "../hooks/useGetUser";
 import { useSearchParams } from "react-router-dom";
+import { useGetData } from "../hooks/useGetData";
 import SpinnerFullPage from "../ui/SpinnerFullPage";
+import { useUser } from "./UserProvider";
 
 const CourseContext = createContext();
 
 function CourseProvider({ children }) {
   const [searchParams] = useSearchParams();
-  const { data: user } = useGetUser();
+
+  const { user_id } = useUser();
   const level = searchParams.get("level");
   const semester = searchParams.get("semester");
   const query = searchParams.get("query")?.toLowerCase();
@@ -19,10 +20,10 @@ function CourseProvider({ children }) {
     "assessments",
     {
       column: "user_id",
-      value: user.id,
+      value: user_id,
     }
   );
-
+  console.log(user_id);
   if (isLoading || isLoadingAssessments) return <SpinnerFullPage />;
 
   // Map the courses and update the assessments
