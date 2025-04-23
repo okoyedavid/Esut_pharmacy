@@ -1,8 +1,21 @@
-function LoadingGrid({ kids, parent }) {
+function LoadingGrid({ kids, parent, styles }) {
+  const baseStyles = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-4";
+  const triStyles = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4";
+  const quadstyles = "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4";
+
+  let classes = baseStyles;
+
+  if (styles === "tri") {
+    classes = triStyles;
+  }
+  if (styles === "quad") {
+    classes = quadstyles;
+  }
+
   return (
     <div className="mt-8">
       <div className="flex items-center mb-6"></div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className={classes}>
         {Array.from({ length: parent }).map((i) => (
           <div
             key={i}

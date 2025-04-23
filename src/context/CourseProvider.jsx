@@ -1,7 +1,6 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useGetData } from "../hooks/useGetData";
-import SpinnerFullPage from "../ui/SpinnerFullPage";
 import { useUser } from "./UserProvider";
 
 const CourseContext = createContext();
@@ -13,9 +12,9 @@ function CourseProvider({ children }) {
   const level = searchParams.get("level");
   const semester = searchParams.get("semester");
   const query = searchParams.get("query")?.toLowerCase();
+  const [resultsWithAssessments, setResultsWithAssessments] = useState([]);
 
   const { data, isLoading } = useGetData("courses");
-
   const { data: assessments, isLoading: isLoadingAssessments } = useGetData(
     "assessments",
     {
@@ -23,29 +22,34 @@ function CourseProvider({ children }) {
       value: user_id,
     }
   );
-  console.log(user_id);
-  if (isLoading || isLoadingAssessments) return <SpinnerFullPage />;
+
+  useEffect(() => {
+    if (isLoading || isLoadingAssessments) return;
+
+    const resultsWithAssessments = data.map((course) => {
+      // Find the matching assessments for the course based on course.id
+      const courseAssessments = assessments.filter(
+        (assessment) => assessment.course_id === course.id
+      );
+
+      // Merge the assessments into the course object
+      return {
+        ...course,
+        grade: courseAssessments.length > 0 ? courseAssessments[0].grade : "AR",
+        assessments:
+          courseAssessments.length > 0
+            ? courseAssessments[0].scores
+            : [
+                { type: "Quiz", score: 0, total: 30 },
+                { type: "Exam", score: 0, total: 70 },
+              ],
+      };
+    });
+
+    setResultsWithAssessments(resultsWithAssessments);
+  }, [assessments, data, isLoading, isLoadingAssessments]);
 
   // Map the courses and update the assessments
-  const resultsWithAssessments = data.map((course) => {
-    // Find the matching assessments for the course based on course.id
-    const courseAssessments = assessments.filter(
-      (assessment) => assessment.course_id === course.id
-    );
-
-    // Merge the assessments into the course object
-    return {
-      ...course,
-      grade: courseAssessments.length > 0 ? courseAssessments[0].grade : "AR",
-      assessments:
-        courseAssessments.length > 0
-          ? courseAssessments[0].scores
-          : [
-              { type: "Quiz", score: 0, total: 30 },
-              { type: "Exam", score: 0, total: 70 },
-            ],
-    };
-  });
 
   // Filter results based on search parameters
   const result = resultsWithAssessments.filter((item) => {
@@ -59,7 +63,14 @@ function CourseProvider({ children }) {
   });
 
   return (
-    <CourseContext.Provider value={{ result, resultsWithAssessments }}>
+    <CourseContext.Provider
+      value={{
+        result,
+        resultsWithAssessments,
+        isLoading,
+        isLoadingAssessments,
+      }}
+    >
       {children}
     </CourseContext.Provider>
   );

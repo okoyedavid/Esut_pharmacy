@@ -12,9 +12,10 @@ import {
 import CustomTooltip from "./CustomTooltip";
 import { settingsvariants } from "../../../utils/Constants";
 import { useCourses } from "../../../context/CourseProvider";
+import LoadingGrid from "../../../ui/LoadingGrid";
 
 const ProgressCharts = () => {
-  const { result } = useCourses();
+  const { result, isLoading, isLoadingAssessments } = useCourses();
   const barChartData = result.map((course) => ({
     name: course.code,
     Grade:
@@ -33,6 +34,9 @@ const ProgressCharts = () => {
         : "AR",
     Units: course.units * 20,
   }));
+
+  if (isLoading || isLoadingAssessments)
+    return <LoadingGrid parent={1} kids={6} />;
 
   return (
     <motion.div

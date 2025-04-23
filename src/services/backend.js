@@ -52,7 +52,7 @@ async function insertData(table, data) {
 
   if (error) {
     console.error(error.message);
-    throw new Error(`Error updating messages ${table}`, error);
+    throw new Error(`Error updating ${table}`, error);
   }
 
   return info;

@@ -6,6 +6,7 @@ import { useGetData } from "../../../hooks/useGetData";
 import { useState } from "react";
 import Modal, { useModal } from "../../../ui/Modal";
 import ResourceModal from "./ResourceModal";
+import LoadingGrid from "../../../ui/LoadingGrid";
 
 function ResourceGrid() {
   const { data: resources, isLoading } = useGetData("resources");
@@ -14,7 +15,7 @@ function ResourceGrid() {
   const [data, setData] = useState("");
   const { open } = useModal();
 
-  if (isLoading) return <p>Loading resources</p>;
+  if (isLoading) return <LoadingGrid parent={10} kids={2} styles={"tri"} />;
 
   const resourceList = resources.filter((item) => {
     return (

@@ -5,16 +5,19 @@ import { useModal } from "../../../ui/Modal";
 import { useSetUrl } from "../../../hooks/useSetUrl";
 import { useCourses } from "../../../context/CourseProvider";
 import { settingsvariants } from "../../../utils/Constants";
+import LoadingGrid from "../../../ui/LoadingGrid";
 
 function CoursesList() {
   const { setParams } = useSetUrl();
   const { open } = useModal();
-  const { result } = useCourses();
+  const { result, isLoading, isLoadingAssessments } = useCourses();
 
   function handleSelectCourse(course) {
     setParams({ id: course });
     open("course");
   }
+
+  if (isLoading || isLoadingAssessments) return <LoadingGrid parent={8} />;
 
   return (
     <motion.div
@@ -52,21 +55,6 @@ function CoursesList() {
             </div>
           </div>
 
-          {/* {course.status === "ongoing" && (
-            <div className="space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-600">Progress</span>
-                <span className="font-medium">{course.progress}%</span>
-              </div>
-              <div className="w-full bg-gray-200 rounded-full h-2">
-                <div
-                  className="bg-blue-600 h-2 rounded-full"
-                  style={{ width: `${course.progress}%` }}
-                />
-              </div>
-            </div>
-          )} */}
-
           <div className="mt-4 flex items-center justify-between">
             <div className="flex items-center gap-4">
               <span className="text-sm text-gray-600">
@@ -76,12 +64,6 @@ function CoursesList() {
                 Level {course.level}
               </span>
             </div>
-            {/* {course.status === "completed" && (
-              <span className="flex items-center gap-1 text-green-600">
-                <CheckCircle className="h-4 w-4" />
-                <span className="text-sm">Completed</span>
-              </span>
-            )} */}
           </div>
         </div>
       ))}

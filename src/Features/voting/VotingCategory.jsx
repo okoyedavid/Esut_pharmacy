@@ -5,7 +5,7 @@ const VotingCategory = ({ category }) => {
   return (
     <motion.div whileHover={{ y: -5 }}>
       <Link
-        to={`/voting/list?category=${category.name}`}
+        to={`/voting/${category.name}`}
         className="relative flex items-center shadow-md hover:border-[#4F46E5] hover:border justify-center rounded-md overflow-hidden"
       >
         {/* Top-right */}

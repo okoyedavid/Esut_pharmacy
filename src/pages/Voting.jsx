@@ -1,11 +1,9 @@
-import CategoryList from "../Features/voting/CategoryList";
-import VotingBanner from "../Features/voting/VotingBanner";
+import { Outlet } from "react-router-dom";
 
 function Voting() {
   return (
     <div className="min-h-screen relative">
-      <VotingBanner />
-      <CategoryList />
+      <Outlet />
     </div>
   );
 }

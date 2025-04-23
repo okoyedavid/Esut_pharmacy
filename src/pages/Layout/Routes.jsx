@@ -1,27 +1,29 @@
 import { createBrowserRouter } from "react-router-dom";
-import ProtectedRoutes from "../../ui/ProtectedRoutes.jsx";
-import Dashboard from "../../Features/Dashboard/Dashboard/Dashboard.jsx";
-import HomeLayout from "./HomeLayout.jsx";
 import AuthPage from "../../Features/Auth/Auth.jsx";
-import About from "../About.jsx";
-import HomePage from "../HomePage.jsx";
-import DashboardLayout from "./DashbaordLayout.jsx";
-import Settings from "../DashboardPages/Settings.jsx";
-import Error from "../../ui/Error.jsx";
-import Payments from "../DashboardPages/Payment.jsx";
-import Courses from "../DashboardPages/Courses.jsx";
-import News from "../News.jsx";
+import Dashboard from "../../Features/Dashboard/Dashboard/Dashboard.jsx";
+import ForumHome from "../../Features/Dashboard/Forum/ForumHome.jsx";
+import ForumPost from "../../Features/Dashboard/Forum/ForumPost.jsx";
 import NewsHome from "../../Features/News/NewsHome.jsx";
 import NewsInfo from "../../Features/News/NewsInfo.jsx";
-import Results from "../DashboardPages/Results.jsx";
-import Resources from "../DashboardPages/Resources.jsx";
+import VotingList from "../../Features/voting/VotingList.jsx";
+import Error from "../../ui/Error.jsx";
+import ProtectedRoutes from "../../ui/ProtectedRoutes.jsx";
+import About from "../About.jsx";
+import AdminPage from "../Admin.jsx";
+import Courses from "../DashboardPages/Courses.jsx";
 import Directory from "../DashboardPages/Directory.jsx";
 import Forum from "../DashboardPages/Forum.jsx";
-import ForumPost from "../../Features/Dashboard/Forum/ForumPost.jsx";
-import ForumHome from "../../Features/Dashboard/Forum/ForumHome.jsx";
+import Payments from "../DashboardPages/Payment.jsx";
+import Resources from "../DashboardPages/Resources.jsx";
+import Results from "../DashboardPages/Results.jsx";
+import Settings from "../DashboardPages/Settings.jsx";
+import HomePage from "../HomePage.jsx";
+import News from "../News.jsx";
 import Voting from "../Voting.jsx";
-import AdminPage from "../Admin.jsx";
-import VotingList from "../../Features/voting/VotingList.jsx";
+import DashboardLayout from "./DashbaordLayout.jsx";
+import HomeLayout from "./HomeLayout.jsx";
+import VotingHome from "../../Features/voting/VotingHome.jsx";
+import Contestant from "../../Features/voting/Contestant.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -55,7 +57,16 @@ export const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       { element: <HomePage />, path: "/" },
-      { element: <Voting />, path: "/voting" },
+      {
+        element: <Voting />,
+        path: "/voting",
+
+        children: [
+          { index: true, element: <VotingHome /> },
+          { element: <VotingList />, path: "/voting/:category" },
+          { element: <Contestant />, path: "/voting/:category/:id" },
+        ],
+      },
       { element: <VotingList />, path: "/voting/list" },
       { element: <AuthPage />, path: "/auth" },
       { element: <AdminPage />, path: "/admin" },

@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { useGetUser } from "../hooks/useGetUser";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { getCurrentUser } from "../services/ApiAuth";
 import SpinnerFullPage from "../ui/SpinnerFullPage";
 
 const UserContext = createContext();
@@ -41,46 +42,41 @@ function reducer(state, { type, payload }) {
 function UserProvider({ children }) {
   const [{ user, user_email, loading, isAuthenticated, user_id }, dispatch] =
     useReducer(reducer, initialState);
-  const { data: fetchedUser, isLoading: fetching } = useGetUser();
   const [storedUser, setStoredUser] = useLocalStorage("user", null);
-
-  const shouldValidateWithServer = !storedUser;
-
-  useEffect(() => {
-    if (!shouldValidateWithServer) {
-      dispatch({ type: "SET_USER", payload: storedUser });
-    }
-  }, [storedUser, shouldValidateWithServer]);
+  const { data, isLoading: fetching } = useGetUser();
 
   useEffect(() => {
-    if (shouldValidateWithServer && !fetching) {
-      if (!fetchedUser) {
+    async function getUser() {
+      const fetchedUser = await getCurrentUser();
+      if (storedUser) {
+        dispatch({ type: "SET_USER", payload: storedUser });
+      } else if (fetchedUser) {
+        dispatch({ type: "SET_USER", payload: fetchedUser });
+        setStoredUser(fetchedUser);
+      } else {
         dispatch({ type: "NO_USER" });
-
-        return;
       }
-      dispatch({ type: "SET_USER", payload: fetchedUser });
-      setStoredUser(fetchedUser);
     }
-  }, [fetchedUser, fetching, setStoredUser, shouldValidateWithServer]);
+    getUser();
+  }, [setStoredUser, storedUser]);
 
   useEffect(() => {
     if (
       !fetching &&
       storedUser &&
-      fetchedUser &&
-      storedUser.updated_at !== fetchedUser.updated_at
+      data &&
+      storedUser.updated_at !== data.updated_at
     ) {
-      dispatch({ type: "SET_USER", payload: fetchedUser });
-      setStoredUser(fetchedUser);
+      dispatch({ type: "SET_USER", payload: data });
+      setStoredUser(data);
     }
-  }, [fetching, storedUser, fetchedUser, setStoredUser]);
+  }, [fetching, storedUser, data, setStoredUser]);
 
   if (loading) return <SpinnerFullPage />;
 
   return (
     <UserContext.Provider
-      value={{ user, user_email, user_id, isAuthenticated }}
+      value={{ user, user_email, user_id, dispatch, isAuthenticated }}
     >
       {children}
     </UserContext.Provider>

@@ -5,11 +5,30 @@ import Wrapper from "../../../ui/Wrapper";
 import { useDarkMode } from "../../../context/DarkModeProvider";
 import { Moon, Sun } from "lucide-react";
 import { logout } from "../../../services/ApiAuth";
+import { useLocalStorage } from "../../../hooks/useLocalStorage";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../../../context/UserProvider";
 
 function Privacy() {
   const { containerVariants, itemVariants } = settingsvariants;
+  const [storedUser, setStoredUser] = useLocalStorage("user", null);
+  const { dispatch } = useUser();
 
   const { toggleTheme, isDarkMode } = useDarkMode();
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    if (storedUser) setStoredUser(null);
+    logout()
+      .then(() => {
+        dispatch({ type: "NO_USER" });
+        navigate("/auth?login", { replace: true });
+      })
+      .catch((error) => {
+        console.error("Logout failed:", error);
+        // Handle error, e.g., show a notification
+      });
+  }
   return (
     <motion.div variants={containerVariants}>
       <h2 className="text-2xl font-bold mb-6 dark:text-white">
@@ -102,7 +121,7 @@ function Privacy() {
             Account Management
           </h3>
           <div className="space-y-4">
-            <Button onClick={logout} size="lg" variant="danger">
+            <Button onClick={handleLogout} size="lg" variant="danger">
               Logout
             </Button>
           </div>

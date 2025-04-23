@@ -1,12 +1,14 @@
+import { motion } from "framer-motion";
 import { Award } from "lucide-react";
-import VotingCategory from "./VotingCategory";
 import { useGetData } from "../../hooks/useGetData";
 import LoadingGrid from "../../ui/LoadingGrid";
-import { motion } from "framer-motion";
+import VotingCategory from "./VotingCategory";
+
 const CategoryList = () => {
   const { data: categories, isLoading } = useGetData("voting");
+
   if (isLoading) {
-    return <LoadingGrid parent={6} />;
+    return <LoadingGrid parent={6} styles={"tri"} />;
   }
 
   if (!categories || categories.length === 0) {
@@ -34,7 +36,7 @@ const CategoryList = () => {
         className="grid grid-cols-1 md:grid-cols-3 gap-10 "
       >
         {categories.map((category) => (
-          <VotingCategory key={category.id} category={category} />
+          <VotingCategory key={category.name} category={category} />
         ))}
       </motion.div>
     </div>

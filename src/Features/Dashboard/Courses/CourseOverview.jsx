@@ -5,14 +5,19 @@ import Wrapper from "../../../ui/Wrapper";
 import { useCourses } from "../../../context/CourseProvider";
 import { useCoursesData } from "./useCoursesData";
 import { getClassification } from "../../../utils/helper";
-import SpinnerFullPage from "../../../ui/SpinnerFullPage";
+import LoadingGrid from "../../../ui/LoadingGrid";
 
 function CourseOverview() {
   const { total_units, units_completed, percentage, pastLevels, isLoading } =
     useCoursesData();
-  const { resultsWithAssessments } = useCourses();
+  const {
+    resultsWithAssessments,
+    isLoading: loadingresults,
+    isLoadingAssessments,
+  } = useCourses();
 
-  if (isLoading) return <SpinnerFullPage />;
+  if (isLoading || loadingresults || isLoadingAssessments)
+    return <LoadingGrid parent={4} kids={2} styles={"quad"} />;
 
   const passedCourses = resultsWithAssessments.filter(
     (item) => item.grade !== "AR" && pastLevels.includes(Number(item.level))
