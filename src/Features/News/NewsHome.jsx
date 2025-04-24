@@ -5,6 +5,7 @@ import NewsHeader from "./NewsHeader";
 import NewsGrid from "./NewsGrid";
 import { settingsvariants } from "../../utils/Constants";
 import Advertisements from "../../ui/Advertisements";
+import NewsProvider from "../../context/NewsProvider";
 
 const { containerVariants } = settingsvariants;
 
@@ -29,7 +30,9 @@ function NewsHome() {
         <SearchNews />
         <Advertisements />
         {/* Updates Grid */}
-        <NewsGrid />
+        <NewsProvider>
+          <NewsGrid />
+        </NewsProvider>
       </motion.div>
     </div>
   );

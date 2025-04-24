@@ -13,7 +13,7 @@ function LoadingGrid({ kids, parent, styles }) {
   }
 
   return (
-    <div className="mt-8">
+    <div className="pt-8">
       <div className="flex items-center mb-6"></div>
       <div className={classes}>
         {Array.from({ length: parent }).map((i) => (

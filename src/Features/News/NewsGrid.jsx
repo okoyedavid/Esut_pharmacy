@@ -1,57 +1,20 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import { settingsvariants } from "../../utils/Constants";
 import { motion } from "framer-motion";
-import Button from "../../ui/Button";
-import SpinnerFullPage from "../../ui/SpinnerFullPage";
 import { Bookmark, Heart, MessageCircle, Share2 } from "lucide-react";
-import { useState } from "react";
-import { useGetData } from "../../hooks/useGetData";
+import Button from "../../ui/Button";
+import { settingsvariants } from "../../utils/Constants";
+import { useNavigate } from "react-router-dom";
+import { useNews } from "../../context/NewsProvider";
 
 function NewsGrid() {
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const selectedCategory = searchParams.get("selected") || "all";
-  const searchQuery = searchParams.get("query") || "";
-  const { data: updates, isLoading } = useGetData("news");
-
   const navigate = useNavigate();
-  const [bookmarkedPosts, setBookmarkedPosts] = useState(new Set());
-  const [likedPosts, setLikedPosts] = useState(new Set());
-
-  if (isLoading) return <SpinnerFullPage />;
-
-  const filteredUpdates = updates.filter(
-    (update) =>
-      (selectedCategory === "all" || update.category === selectedCategory) &&
-      (update.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        update.description.toLowerCase().includes(searchQuery.toLowerCase()))
-  );
-
+  const {
+    filteredUpdates,
+    toggleBookmark,
+    toggleLike,
+    bookmarkedPosts,
+    likedPosts,
+  } = useNews();
   const { itemVariants, containerVariants } = settingsvariants;
-
-  const toggleBookmark = (id) => {
-    setBookmarkedPosts((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(id)) {
-        newSet.delete(id);
-      } else {
-        newSet.add(id);
-      }
-      return newSet;
-    });
-  };
-
-  const toggleLike = (id) => {
-    setLikedPosts((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(id)) {
-        newSet.delete(id);
-      } else {
-        newSet.add(id);
-      }
-      return newSet;
-    });
-  };
   return (
     <motion.div
       variants={containerVariants}

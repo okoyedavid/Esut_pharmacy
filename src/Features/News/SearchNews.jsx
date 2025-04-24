@@ -1,33 +1,29 @@
-import {
-  Filter,
-  Users,
-  Search,
-  Bell,
-  Megaphone,
-  GraduationCap,
-  Award,
-  Calendar,
-} from "lucide-react";
 import { motion } from "framer-motion";
+import {
+  Award,
+  Bell,
+  Calendar,
+  Filter,
+  GraduationCap,
+  Megaphone,
+  Search,
+  Users,
+} from "lucide-react";
+import { useSetUrl } from "../../hooks/useSetUrl";
 import Button from "../../ui/Button";
-import { settingsvariants } from "../../utils/Constants";
-import { useLocation, useSearchParams } from "react-router-dom";
 import Input from "../../ui/Input";
+import { settingsvariants } from "../../utils/Constants";
 
 function SearchNews() {
-  const location = useLocation();
-  const params = new URLSearchParams(location.search);
-  const selectedCategory = params.get("selected") || "all";
-
-  const [searchParams, setSearchParams] = useSearchParams();
-  const current = Object.fromEntries([...searchParams]);
+  const { searchParams, setParams } = useSetUrl();
+  const selectedCategory = searchParams.get("selected") || "all";
 
   function handleSearch(e) {
-    setSearchParams({ ...current, query: e.target.value });
+    setParams({ query: e.target.value });
   }
 
   function handleSelect(id) {
-    setSearchParams({ ...current, selected: id });
+    setParams({ selected: id });
   }
 
   return (

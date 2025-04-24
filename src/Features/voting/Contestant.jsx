@@ -16,7 +16,7 @@ function Contestant() {
     "*, users(name, avatar)"
   );
 
-  if (!contestant || isLoading)
+  if (isLoading)
     return (
       <div className="max-w-6xl mx-auto pt-22 px-4 sm:px-6 lg:px-8">
         <LoadingGrid parent={1} kids={6} />
@@ -31,12 +31,12 @@ function Contestant() {
     <Modal>
       <div className="max-w-6xl mx-auto pt-22 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-[3fr_4fr] gap-8 md:gap-16 border border-blue-100 shadow-lg rounded-xl">
-          <div className="relative md:-translate-x-3 ">
+          <div className="relative">
             <div className="bg-blue-500 w-fit p-3 rounded-tr-xl absolute right-0 text-white">
               {votes} votes
             </div>
             <img
-              className="object-cover rounded-t-xl"
+              className="object-cover min-h-[50vh] max-h-screen w-full rounded-t-xl"
               src={avatar}
               alt={`Contestant ${name}`}
             />
@@ -47,7 +47,7 @@ function Contestant() {
             </div>
           </div>
           <div className="p-4 flex justify-center flex-col gap-4">
-            <h3 className="text-blue-800 hidden md:block font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight bg-white z-2 px-4 py-2 rounded">
+            <h3 className="text-blue-800 hidden md:block font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight bg-white dark:bg-gray-800 z-2 px-4 py-2 rounded">
               {name}
             </h3>
             <p className="poetsen-one-regular">

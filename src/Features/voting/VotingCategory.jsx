@@ -6,7 +6,7 @@ const VotingCategory = ({ category }) => {
     <motion.div whileHover={{ y: -5 }}>
       <Link
         to={`/voting/${category.name}`}
-        className="relative flex items-center shadow-md hover:border-[#4F46E5] hover:border justify-center rounded-md overflow-hidden"
+        className="relative flex items-center shadow-md dark:bg-gray-800 dark:text-gray-50 hover:border-[#4F46E5] hover:border justify-center rounded-md overflow-hidden"
       >
         {/* Top-right */}
         <svg

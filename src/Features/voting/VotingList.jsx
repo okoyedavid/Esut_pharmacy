@@ -29,7 +29,7 @@ const VotingList = () => {
               key={voter.id}
               className={`w-full p-4 transition-all duration-30`}
             >
-              <div className="bg-white rounded-xl overflow-hidden animate-glow shadow-lg transition-transform hover:scale-[1.02]">
+              <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden animate-glow shadow-lg transition-transform hover:scale-[1.02]">
                 <div className="relative h-48 sm:h-64 overflow-hidden">
                   <img
                     src={voter.users.avatar}
