@@ -13,7 +13,7 @@ function Contestant() {
       column: "id",
       value: Number(id),
     },
-    "*, users(name, users.avatar)"
+    "*, users(name, avatar)"
   );
 
   if (isLoading)
