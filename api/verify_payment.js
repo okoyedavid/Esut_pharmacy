@@ -24,7 +24,6 @@ export default async function handler(req, res) {
 
   if (req.method === "GET") {
     const { reference } = req.query;
-    console.log(req);
 
     // Ensure that reference is passed in the query
     if (!reference) {
