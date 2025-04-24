@@ -34,7 +34,6 @@ function Contestant() {
     );
 
     const response = await data.json();
-    console.log(response);
   }
 
   return (

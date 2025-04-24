@@ -4,7 +4,7 @@ import Cors from "cors";
 const cors = Cors({
   methods: ["GET", "POST"],
   allowedHeaders: ["Authorization", "Content-Type"],
-  origin: ["http://localhost:5173", "https://esut-pharmacy.vercel.app/"], // Allow all origins (you can specify specific domains in production)
+  origin: ["http://localhost:5173", "https://esut-pharmacy.vercel.app/"],
 });
 
 function runMiddleware(req, res, fn) {
@@ -24,6 +24,7 @@ export default async function handler(req, res) {
 
   if (req.method === "GET") {
     const { reference } = req.query;
+    console.log(req);
 
     // Ensure that reference is passed in the query
     if (!reference) {
