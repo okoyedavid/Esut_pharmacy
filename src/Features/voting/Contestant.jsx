@@ -25,16 +25,14 @@ function Contestant() {
 
   const { users, votes } = contestant[0];
 
-  console.log(contestant);
+  // async function checkverification() {
+  //   const data = await fetch(
+  //     "https://esut-pharmacy.vercel.app/api/verify_payment?reference=1745402744356"
+  //   );
 
-  async function checkverification() {
-    const data = await fetch(
-      "https://esut-pharmacy.vercel.app/api/verify_payment?reference=1745402744356"
-    );
-
-    const response = await data.json();
-    console.log(response);
-  }
+  //   const response = await data.json();
+  //   console.log(response);
+  // }
 
   return (
     <Modal>
@@ -65,11 +63,9 @@ function Contestant() {
               clicking the button below. Your vote will be counted towards their
               total votes.
             </p>
-            {/* <Modal.Open name={"vote-modal"}> */}
-            <Button onClick={checkverification} size="lg">
-              Vote {users?.name}
-            </Button>
-            {/* </Modal.Open> */}
+            <Modal.Open name={"vote-modal"}>
+              <Button size="lg">Vote {users?.name}</Button>
+            </Modal.Open>
           </div>
         </div>
       </div>
