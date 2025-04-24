@@ -27,6 +27,16 @@ function Contestant() {
     users: { avatar, name },
     votes,
   } = contestant[0];
+
+  async function checkverification() {
+    const data = await fetch(
+      "https://esut-pharmacy.vercel.app/api/verify_payment?1745402744356"
+    );
+
+    const response = await data.json();
+    console.log(response);
+  }
+
   return (
     <Modal>
       <div className="max-w-6xl mx-auto pt-22 px-4 sm:px-6 lg:px-8">
@@ -41,7 +51,7 @@ function Contestant() {
               alt={`Contestant ${name}`}
             />
             <div className="">
-              <h3 className="text-blue-800 md:hidden absolute -translate-y-13 md:translate-x-[-254px] font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight bg-white z-2 px-4 py-2 rounded">
+              <h3 className="text-blue-800 md:hidden dark:bg-gray-800 absolute -translate-y-13 md:translate-x-[-254px] font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight bg-white z-2 px-4 py-2 rounded">
                 {name}
               </h3>
             </div>
@@ -55,9 +65,11 @@ function Contestant() {
               Week! You can vote for your favorite contestant by clicking the
               button below. Your vote will be counted towards their total votes.
             </p>
-            <Modal.Open name={"vote-modal"}>
-              <Button size="lg">Vote {name}</Button>
-            </Modal.Open>
+            {/* <Modal.Open name={"vote-modal"}> */}
+            <Button onClick={checkverification} size="lg">
+              Vote {name}
+            </Button>
+            {/* </Modal.Open> */}
           </div>
         </div>
       </div>

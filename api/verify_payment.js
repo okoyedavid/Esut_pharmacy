@@ -1,8 +1,29 @@
-// /api/verify_payment.js
+import Cors from "cors";
+
+// Initialize the CORS middleware
+const cors = Cors({
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Authorization", "Content-Type"],
+  origin: ["http://localhost:5173", "https://esut-pharmacy.vercel.app/"], // Allow all origins (you can specify specific domains in production)
+});
+
+function runMiddleware(req, res, fn) {
+  return new Promise((resolve, reject) => {
+    fn(req, res, (result) => {
+      if (result instanceof Error) {
+        return reject(result);
+      }
+      return resolve(result);
+    });
+  });
+}
 
 export default async function handler(req, res) {
+  // Run the CORS middleware
+  await runMiddleware(req, res, cors);
+
   if (req.method === "GET") {
-    const { reference } = req.query; // Extract the reference from the query
+    const { reference } = req.query;
 
     // Ensure that reference is passed in the query
     if (!reference) {

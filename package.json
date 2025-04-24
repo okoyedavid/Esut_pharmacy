@@ -14,6 +14,7 @@
     "@tailwindcss/vite": "^4.0.17",
     "@tanstack/react-query": "^5.62.8",
     "@tanstack/react-query-devtools": "^5.62.8",
+    "cors": "^2.8.5",
     "express": "^5.1.0",
     "framer-motion": "^12.6.2",
     "lucide-react": "^0.486.0",
