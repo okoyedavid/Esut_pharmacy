@@ -25,19 +25,10 @@ function Contestant() {
 
   const { users, votes } = contestant[0];
 
-  // async function checkverification() {
-  //   const data = await fetch(
-  //     "https://esut-pharmacy.vercel.app/api/verify_payment?reference=1745402744356"
-  //   );
-
-  //   const response = await data.json();
-  //   console.log(response);
-  // }
-
   return (
     <Modal>
       <div className="max-w-6xl mx-auto pt-22 px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-[3fr_4fr] gap-8 md:gap-16 border border-blue-100 shadow-lg rounded-xl">
+        <div className="grid grid-cols-1 md:grid-cols-[3fr_4fr] gap-8 md:gap-16 border border-blue-100 dark:border-blue-950 shadow-lg rounded-xl mb-4">
           <div className="relative">
             <div className="bg-blue-500 w-fit p-3 rounded-tr-xl absolute right-0 text-white">
               {votes} votes
@@ -71,7 +62,7 @@ function Contestant() {
       </div>
 
       <Modal.Window name={"vote-modal"}>
-        <VoteModal contestant={contestant} />
+        <VoteModal contestant={contestant[0]} />
       </Modal.Window>
     </Modal>
   );

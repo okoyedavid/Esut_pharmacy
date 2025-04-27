@@ -14,7 +14,7 @@ function DashboardLayout() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col md:overflow-hidden">
         <Header onToggleSidebar={() => setIsSidebarOpen((prev) => !prev)} />
-        <div className="flex-1 md:overflow-y-auto px-2 md:pt-5 pt-6 relative  bg-gray-50 dark:bg-gray-800">
+        <div className="flex-1 md:overflow-y-auto md:pt-5 pt-6 relative  bg-gray-50 dark:bg-gray-800">
           <Outlet />
         </div>
       </div>

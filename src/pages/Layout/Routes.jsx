@@ -9,7 +9,6 @@ import VotingList from "../../Features/voting/VotingList.jsx";
 import Error from "../../ui/Error.jsx";
 import ProtectedRoutes from "../../ui/ProtectedRoutes.jsx";
 import About from "../About.jsx";
-import AdminPage from "../Admin.jsx";
 import Courses from "../DashboardPages/Courses.jsx";
 import Directory from "../DashboardPages/Directory.jsx";
 import Forum from "../DashboardPages/Forum.jsx";
@@ -24,6 +23,8 @@ import DashboardLayout from "./DashbaordLayout.jsx";
 import HomeLayout from "./HomeLayout.jsx";
 import VotingHome from "../../Features/voting/VotingHome.jsx";
 import Contestant from "../../Features/voting/Contestant.jsx";
+import AdminLayout from "./AdminLayout.jsx";
+import AdminPage from "../../Features/Admin/AdminPage.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -69,7 +70,7 @@ export const router = createBrowserRouter([
       },
       { element: <VotingList />, path: "/voting/list" },
       { element: <AuthPage />, path: "/auth" },
-      { element: <AdminPage />, path: "/admin" },
+
       {
         path: "/about",
         element: <About />,
@@ -86,5 +87,11 @@ export const router = createBrowserRouter([
   },
   {
     future: { v7_startTransition: true, v7_relativeSplatPath: true },
+  },
+  {
+    path: "/admin",
+    errorElement: <Error />,
+    element: <AdminLayout />,
+    children: [{ index: true, element: <AdminPage /> }],
   },
 ]);

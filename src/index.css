@@ -1,24 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Poetsen+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import "tailwindcss";
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 * {
-  font-family: "Lora", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-optical-sizing: auto;
-  font-style: italic;
-}
-
-.poetsen-one-regular {
-  font-family: "Poetsen One", sans-serif;
-  font-weight: 400;
-  font-style: normal;
 }
 
 @layer base {
   h1 {
     font-size: 2.25rem;
     font-weight: 700;
-    font-style: italic;
     color: theme("colors.gray.50");
   }
 }
@@ -33,91 +25,6 @@
 [data-theme="dark"] html {
   background-color: black;
 }
-
-/* }
-
-  h2 {
-    font-size: 1.875rem;
-    font-weight: 600;
-    color: theme("colors.black");
-  }
-
-  h3 {
-    font-size: 1.5rem;
-    font-weight: 500;
-    font-style: italic;
-    color: theme("colors.black");
-  }
-
-  h4 {
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: theme("colors.black");
-  }
-
-  h5 {
-    font-size: 1.125rem;
-    font-weight: 400;
-    font-style: italic;
-    color: theme("colors.black");
-  }
-
-  h6 {
-    font-size: 1rem;
-    font-weight: 400;
-    color: theme("colors.black");
-  }
-
-  p,
-  a,
-  button,
-  input,
-  textarea,
-  select,
-  ul,
-  ol {
-    font-size: 1rem;
-    color: theme("colors.black");
-  }
-
-  button {
-    font-weight: 500;
-  }
-
-  input,
-  textarea,
-  select {
-    background-color: white;
-    border: 1px solid theme("colors.gray.300");
-    border-radius: 0.375rem;
-    padding: 0.5rem 0.75rem;
-  }
-
- 
- 
-  /* [data-theme="dark"] h2,
-  [data-theme="dark"] h3,
-  [data-theme="dark"] h4,
-  [data-theme="dark"] h5,
-  [data-theme="dark"] h6,
-  [data-theme="dark"] p,
-  [data-theme="dark"] a,
-  [data-theme="dark"] button,
-  [data-theme="dark"] input,
-  [data-theme="dark"] textarea,
-  [data-theme="dark"] select,
-  [data-theme="dark"] ul,
-  [data-theme="dark"] ol {
-    color: theme("colors.gray.50");
-  } 
-
-  [data-theme="dark"] input,
-  [data-theme="dark"] textarea,
-  [data-theme="dark"] select {
-    background-color: theme("colors.gray.800");
-    border-color: theme("colors.gray.600");
-  }
-} */
 
 @keyframes slideInRight {
   from {

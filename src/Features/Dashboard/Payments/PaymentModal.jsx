@@ -1,13 +1,18 @@
-import { AlertTriangle, Building2, CreditCard, Phone } from "lucide-react";
-import Modal from "../../../ui/Modal";
 import { motion } from "framer-motion";
+import { AlertTriangle } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
 import Button from "../../../ui/Button";
-import { useLocation } from "react-router-dom";
+import { useUser } from "../../../context/UserProvider";
+import Modal from "../../../ui/Modal";
+import { paystack_pk } from "../../../services/api";
+import { PaystackButton } from "react-paystack";
 
 function PaymentModal({ paymentTypes }) {
-  const location = useLocation();
-  const params = new URLSearchParams(location.search);
-  const currrentPayment = params.get("payment") || null;
+  const { user_email, user_id } = useUser();
+  const [searchParams] = useSearchParams();
+  const currrentPayment = searchParams.get("payment") || null;
+
+  const reference = new Date().getTime().toString();
 
   const paymentInfo = paymentTypes.filter(
     (item) => item.id === Number(currrentPayment)
@@ -15,7 +20,32 @@ function PaymentModal({ paymentTypes }) {
 
   if (paymentInfo.length === 0) return null;
 
-  const payment = paymentInfo[0];
+  const [payment] = paymentInfo;
+
+  const componentProps = {
+    email: user_email,
+    amount: payment.amount * 100,
+    reference,
+    publicKey: paystack_pk,
+    text: "Pay Now",
+    onSuccess: () => {
+      //  const votePrice = event.votePrice;
+    },
+    //onClose: () => toast.success("Payment closed"),
+    metadata: {
+      custom_fields: [
+        {
+          display_name: `Payment For ${payment.title}`,
+          variable_name: `${payment.description}`,
+          value: payment.title,
+        },
+        {
+          Date: new Date().getTime().toString(),
+          madeBy: user_id,
+        },
+      ],
+    },
+  };
   return (
     <Modal.Window name={"payment"}>
       <motion.div
@@ -48,45 +78,26 @@ function PaymentModal({ paymentTypes }) {
             </div>
           </div>
 
-          <div className="space-y-3">
-            <h4 className="font-semibold">Payment Methods</h4>
-            <div className="grid grid-cols-1 gap-2">
-              {payment.paymentMethods.includes("card") && (
-                <Button
-                  variant="primary"
-                  fullWidth
-                  icon={<CreditCard className="h-5 w-5" />}
-                >
-                  Pay with Card
+          {payment.status === "completed" ? null : (
+            <>
+              <div className="flex  justify-end gap-5">
+                <Button className="" variant={"secondary"} size={"lg"}>
+                  Cancel
                 </Button>
-              )}
-              {payment.paymentMethods.includes("bank-transfer") && (
-                <Button
-                  variant="secondary"
-                  fullWidth
-                  icon={<Building2 className="h-5 w-5" />}
-                >
-                  Bank Transfer
-                </Button>
-              )}
-              {payment.paymentMethods.includes("ussd") && (
-                <Button
-                  variant="secondary"
-                  fullWidth
-                  icon={<Phone className="h-5 w-5" />}
-                >
-                  USSD Payment
-                </Button>
-              )}
-            </div>
-          </div>
+                <PaystackButton
+                  className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md flex items-center"
+                  {...componentProps}
+                />
+              </div>
 
-          <div className="mt-6 text-sm text-gray-600">
-            <p className="flex items-center gap-2">
-              <AlertTriangle className="h-4 w-4 text-yellow-500" />
-              Please note that this payment is non-refundable
-            </p>
-          </div>
+              <div className="mt-6 text-sm text-gray-600">
+                <p className="flex items-center gap-2">
+                  <AlertTriangle className="h-4 w-4 text-yellow-500" />
+                  Please note that this payment is non-refundable
+                </p>
+              </div>
+            </>
+          )}
         </div>
       </motion.div>
     </Modal.Window>

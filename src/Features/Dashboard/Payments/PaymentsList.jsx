@@ -11,11 +11,9 @@ import { useModal } from "../../../ui/Modal";
 import { useNavigate } from "react-router-dom";
 import PaymentModal from "./PaymentModal";
 
-function PaymentList({ activeCategory, searchQuery }) {
-  const filteredPayments = paymentTypes.filter(
-    (payment) =>
-      (activeCategory === "all" || payment.category === activeCategory) &&
-      payment.title.toLowerCase().includes(searchQuery.toLowerCase())
+function PaymentList({ searchQuery }) {
+  const filteredPayments = paymentTypes.filter((payment) =>
+    payment.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const navigate = useNavigate();
@@ -66,36 +64,18 @@ function PaymentList({ activeCategory, searchQuery }) {
               <p className="text-sm text-gray-600 dark:text-gray-300">
                 Due: {payment.dueDate}
               </p>
+              <span
+                className={`px-3 py-1 mb-2 rounded-full text-xs font-medium ${
+                  payment.status === "completed"
+                    ? "bg-green-100 text-green-600"
+                    : "bg-yellow-100 text-yellow-600"
+                }`}
+              >
+                {payment.status === "completed" ? "Paid" : "Pending"}
+              </span>
             </div>
           </div>
-          <div className="mt-4 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              {payment.paymentMethods.includes("card") && (
-                <span className="px-3 py-1 bg-gray-100 rounded-full text-xs font-medium text-gray-600 dark:text-gray-300">
-                  Card Payment
-                </span>
-              )}
-              {payment.paymentMethods.includes("bank-transfer") && (
-                <span className="px-3 py-1 bg-gray-100 rounded-full text-xs font-medium text-gray-600 dark:text-gray-300">
-                  Bank Transfer
-                </span>
-              )}
-              {payment.paymentMethods.includes("ussd") && (
-                <span className="px-3 py-1 bg-gray-100 rounded-full text-xs font-medium text-gray-600 dark:text-gray-300">
-                  USSD
-                </span>
-              )}
-            </div>
-            <span
-              className={`px-3 py-1 rounded-full text-xs font-medium ${
-                payment.status === "completed"
-                  ? "bg-green-100 text-green-600"
-                  : "bg-yellow-100 text-yellow-600"
-              }`}
-            >
-              {payment.status === "completed" ? "Paid" : "Pending"}
-            </span>
-          </div>
+          <div className="mt-4 flex items-center justify-between"></div>
         </motion.div>
       ))}
 

@@ -42,7 +42,7 @@ function Window({ children, name }) {
         className="relative bg-gray-50 dark:bg-gray-900  max-h-[100vh]  p-6 max-w-lg w-full rounded-xl shadow-2xl"
       >
         <button onClick={close} className="absolute top-2 right-2.5">
-          <X size={20} />
+          <X size={20} className="dark:text-white" />
         </button>
         {children}
       </div>

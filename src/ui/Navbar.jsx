@@ -20,35 +20,35 @@ function Navbar() {
     <nav className="w-full z-50 fixed bg-white/80 dark:bg-gray-900 backdrop-blur-md shadow-md">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          <div className="flex items-center">
+          <Link to={"/"} className="flex items-center">
             <img
               src="/logo.png"
-              className="h-12 w-12 border-2 rounded-full border-blue-600"
+              className="h-12 w-12 border-2 rounded-full border-blue-600 dark:border-blue-900"
             />
             <span className="ml-2 text-xl font-bold dark:text-gray-50">
               Faculty of Pharmacy
             </span>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <Link
               to={"/"}
-              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 flex items-center gap-2"
+              className="text-gray-700 dark:text-gray-50 dark:text-gray-300 hover:text-blue-600 flex items-center gap-2"
             >
               <Home className="h-4 w-4" />
               Home
             </Link>
             <Link
               to={"/about"}
-              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 flex items-center gap-2"
+              className="text-gray-700 dark:text-gray-50 dark:text-gray-300 hover:text-blue-600 flex items-center gap-2"
             >
               <Info className="h-4 w-4" />
               About
             </Link>
             <Link
               to={"/news"}
-              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 flex items-center gap-2"
+              className="text-gray-700 dark:text-gray-50 dark:text-gray-300 hover:text-blue-600 flex items-center gap-2"
             >
               <Newspaper className="h-4 w-4" />
               News
@@ -82,7 +82,7 @@ function Navbar() {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 hover:text-blue-600"
+              className="text-gray-700 dark:text-gray-50 hover:text-blue-600"
             >
               {isOpen ? (
                 <X className="h-6 w-6" />
@@ -105,7 +105,7 @@ function Navbar() {
               <Link
                 onClick={() => setIsOpen(false)}
                 to={"/"}
-                className="text-gray-700 hover:text-blue-600 flex items-center gap-2"
+                className="text-gray-700 dark:text-gray-50 hover:text-blue-600 flex items-center gap-2"
               >
                 <Home className="h-4 w-4" />
                 Home
@@ -113,7 +113,7 @@ function Navbar() {
               <Link
                 onClick={() => setIsOpen(false)}
                 to={"/about"}
-                className="text-gray-700 hover:text-blue-600 flex items-center gap-2"
+                className="text-gray-700 dark:text-gray-50 hover:text-blue-600 flex items-center gap-2"
               >
                 <Info className="h-4 w-4" />
                 About
@@ -121,7 +121,7 @@ function Navbar() {
               <Link
                 onClick={() => setIsOpen(false)}
                 to={"/news"}
-                className="text-gray-700 hover:text-blue-600 flex items-center gap-2"
+                className="text-gray-700 dark:text-gray-50 hover:text-blue-600 flex items-center gap-2"
               >
                 <Newspaper className="h-4 w-4" />
                 News

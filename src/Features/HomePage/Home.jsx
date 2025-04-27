@@ -1,13 +1,5 @@
-import {
-  Calendar,
-  Users,
-  BookOpen,
-  FlaskRound as Flask,
-  Mail,
-  Phone,
-  MapPin,
-} from "lucide-react";
 import { motion } from "framer-motion";
+import { BookOpen, Calendar, Mail, MapPin, Phone, Users } from "lucide-react";
 import FadeInSection from "../../ui/FadeInSection";
 import QuickLink from "../../ui/QuickLinks";
 import DeanMessage from "./DeanMessage";
@@ -76,16 +68,19 @@ function Home() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <QuickLink
+                pathname={"/news"}
                 icon={Calendar}
-                title="Academic Calendar"
-                description="View important dates and schedules"
+                title="Academic Info"
+                description="View important news and schedules"
               />
               <QuickLink
+                pathname={"/dashboard"}
                 icon={Users}
                 title="Student Portal"
                 description="Access your academic resources"
               />
               <QuickLink
+                pathname={"/about"}
                 icon={BookOpen}
                 title="Programs"
                 description="Explore our degree programs"
@@ -97,7 +92,7 @@ function Home() {
         <DeanMessage />
 
         {/* Research Highlights */}
-        <FadeInSection>
+        {/* <FadeInSection>
           <section className="py-16 px-4 bg-blue-50 dark:bg-blue-950">
             <div className="max-w-7xl mx-auto">
               <h2 className="text-3xl font-bold text-center mb-12">
@@ -106,7 +101,7 @@ function Home() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
-                  className="bg-white p-6 rounded-xl shadow-lg"
+                  className="bg-white dark:bg-blue-900 p-6 rounded-xl shadow-lg"
                 >
                   <Flask className="w-8 h-8 text-blue-600 mb-4" />
                   <h3 className="text-xl font-semibold mb-2">Drug Discovery</h3>
@@ -117,7 +112,7 @@ function Home() {
               </div>
             </div>
           </section>
-        </FadeInSection>
+        </FadeInSection> */}
 
         {/* Contact Information */}
         <FadeInSection>

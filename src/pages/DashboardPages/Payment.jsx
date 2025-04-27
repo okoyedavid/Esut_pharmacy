@@ -7,17 +7,7 @@ import PageMotion from "../../ui/PageMotion";
 import PageHead from "../../ui/PageHead";
 
 const Payments = () => {
-  const [activeCategory, setActiveCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
-
-  const categories = [
-    { id: "all", label: "All Payments" },
-    { id: "tuition", label: "Tuition Fees" },
-    { id: "faculty", label: "Faculty Dues" },
-    { id: "department", label: "Departmental Fees" },
-    { id: "hostel", label: "Hostel Fees" },
-    { id: "others", label: "Other Payments" },
-  ];
 
   return (
     <PageMotion>
@@ -26,23 +16,15 @@ const Payments = () => {
         subtitle={"Manage your school-related payments and fees"}
       />
       {/* Payment Overview Cards */}
-      <PaymentOverview />
-      {/* Search and Filter Section */}
       <SearchPayment
-        setActiveCategory={setActiveCategory}
-        categories={categories}
         setSearchQuery={setSearchQuery}
         searchQuery={searchQuery}
-        activeCategory={activeCategory}
       />
-      {/* Payments List */}
+      <PaymentOverview />
+
       <Modal>
-        <PaymentList
-          searchQuery={searchQuery}
-          activeCategory={activeCategory}
-        />{" "}
+        <PaymentList searchQuery={searchQuery} />{" "}
       </Modal>
-      {/* Payment Modal */}
     </PageMotion>
   );
 };

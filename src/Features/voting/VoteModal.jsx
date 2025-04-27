@@ -1,23 +1,33 @@
-import { Mail, Vote } from "lucide-react";
+import { Loader, Mail, Vote } from "lucide-react";
 import { useState } from "react";
 import Input from "../../ui/Input";
 
 import { motion } from "framer-motion";
+import toast from "react-hot-toast";
 import { PaystackButton } from "react-paystack";
 import { useParams } from "react-router-dom";
-import Formrow from "../../ui/Formrow";
-import { event } from "../../utils/Constants";
-import toast from "react-hot-toast";
-import PaymentSuccess from "./PaymentSuccess";
 import { paystack_pk } from "../../services/api";
+import Formrow from "../../ui/Formrow";
+import { useModal } from "../../ui/Modal";
+import { event } from "../../utils/Constants";
+import PaymentSuccess from "./PaymentSuccess";
+import { checkverification } from "../../services/voting";
+import { useMutate } from "../../hooks/useMutate";
 
 function VoteModal({ contestant }) {
   const { category } = useParams();
   const [email, setEmail] = useState("");
+  const { close } = useModal();
   const [voteCount, setVoteCount] = useState(1);
   const [success, setSuccess] = useState(false);
   const totalAmount = event.votePrice * voteCount;
   const reference = new Date().getTime().toString();
+
+  const { mutate, isPending } = useMutate(
+    checkverification,
+    "checkvote",
+    "voting_contestants"
+  );
 
   const componentProps = {
     email,
@@ -26,7 +36,13 @@ function VoteModal({ contestant }) {
     publicKey: paystack_pk,
     text: "Pay Now",
     onSuccess: () => {
-      setSuccess(true);
+      const votePrice = event.votePrice;
+      mutate(
+        { contestant, reference, votePrice },
+        {
+          onSuccess: () => setSuccess(true),
+        }
+      );
     },
     onClose: () => toast.success("Payment closed"),
     metadata: {
@@ -46,6 +62,7 @@ function VoteModal({ contestant }) {
   if (success)
     return (
       <PaymentSuccess
+        onClose={close}
         paymentDetails={{
           amount: totalAmount,
           contestantName: contestant.name,
@@ -53,12 +70,24 @@ function VoteModal({ contestant }) {
       />
     );
 
+  if (isPending)
+    return (
+      <div className="flex gap-4">
+        <Loader size={20} className="animate-spin text-blue-500" />
+        <p className="text-sm space-x-0.5">
+          Confirming payment &gt;&gt;&gt;&gt;{" "}
+        </p>
+      </div>
+    );
+
   return (
     <motion.div
       initial={{ scale: 0.9, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
     >
-      <h2 className="text-xl font-semibold mb-4">Vote for {contestant.name}</h2>
+      <h2 className="text-xl dark:text-gray-50 font-semibold mb-4">
+        Vote for {contestant.users.name}
+      </h2>
 
       <div className="flex items-center gap-3 p-4 bg-blue-50 dark:bg-blue-500 rounded-lg mb-2">
         <Vote className="h-6 w-6 text-blue-600" />
@@ -90,7 +119,7 @@ function VoteModal({ contestant }) {
             <button
               type="button"
               onClick={() => setVoteCount(Math.max(1, voteCount - 1))}
-              className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-l-md bg-gray-100 dark:bg-gray-700"
+              className="px-3 py-2 border dark:text-white border-gray-300 dark:border-gray-600 rounded-l-md bg-gray-100 dark:bg-gray-700"
             >
               -
             </button>
@@ -102,19 +131,19 @@ function VoteModal({ contestant }) {
                 setVoteCount(Math.max(1, parseInt(e.target.value) || 1))
               }
               min="1"
-              className="w-20 text-center py-2 border-t border-b border-gray-300 dark:border-gray-600 dark:bg-gray-700"
+              className="w-20 text-center dark:text-white py-2 border-t border-b border-gray-300 dark:border-gray-600 dark:bg-gray-700"
             />
             <button
               type="button"
               onClick={() => setVoteCount(voteCount + 1)}
-              className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-r-md bg-gray-100 dark:bg-gray-700"
+              className="px-3 py-2 border dark:text-white border-gray-300 dark:border-gray-600 rounded-r-md bg-gray-100 dark:bg-gray-700"
             >
               +
             </button>
           </div>
 
           <div className="mb-4 py-4 rounded-md">
-            <div className="flex justify-start items-center font-semibold">
+            <div className="flex dark:text-white justify-start items-center font-semibold">
               <span>Total amount:</span>
               <span>₦{totalAmount}</span>
             </div>

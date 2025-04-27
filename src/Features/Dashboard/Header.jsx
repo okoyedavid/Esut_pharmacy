@@ -1,4 +1,4 @@
-import { Bell, Menu, MessageSquare, Users } from "lucide-react";
+import { Menu, MessageSquare, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useUser } from "../../context/UserProvider";
 
@@ -25,22 +25,22 @@ function Header({ onToggleSidebar }) {
             to="/dashboard/directory"
             className=" sm:flex items-center gap-1 text-gray-700 dark:text-gray-300"
           >
-            <Users className="w-5 h-5" />
+            <Users className="w-8 h-6.5" />
             <span className="hidden sm:flex text-sm">Directory</span>
           </Link>
           <Link
             to="/dashboard/forum"
             className=" sm:flex items-center gap-1 text-gray-700 dark:text-gray-300"
           >
-            <MessageSquare className="w-5 h-5" />
+            <MessageSquare className="w-8 h-6.5" />
             <span className="hidden sm:flex text-sm">Forum</span>
           </Link>
-          <button className="relative">
+          {/* <button className="relative">
             <Bell className="h-6 w-6 text-gray-600 dark:text-gray-300" />
             <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
               3
             </span>
-          </button>
+          </button> */}
         </div>
       </div>
     </header>
