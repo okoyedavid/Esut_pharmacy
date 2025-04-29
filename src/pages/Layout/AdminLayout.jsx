@@ -1,17 +1,17 @@
-import { Link, Outlet } from "react-router-dom";
-import { useUser } from "../../context/UserProvider";
 import { Award, Home, Trophy, Users } from "lucide-react";
+import { Link, Outlet } from "react-router-dom";
+import Modal from "../../ui/Modal";
 
 function AdminLayout() {
-  const { user } = useUser();
   return (
-    <div className="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen font-sans transition-colors duration-200">
-      <NavBar />
-      <main className="px-8 pt-20">
-        <h1>Welcome {user.name}</h1>
-        <Outlet />
-      </main>
-    </div>
+    <Modal>
+      <div className="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen font-sans transition-colors duration-200">
+        <NavBar />
+        <main className="px-8 pt-20">
+          <Outlet />
+        </main>
+      </div>
+    </Modal>
   );
 }
 

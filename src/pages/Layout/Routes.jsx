@@ -25,6 +25,7 @@ import VotingHome from "../../Features/voting/VotingHome.jsx";
 import Contestant from "../../Features/voting/Contestant.jsx";
 import AdminLayout from "./AdminLayout.jsx";
 import AdminPage from "../../Features/Admin/AdminPage.jsx";
+import CategoryDetails from "../../Features/Admin/CategoryDetails.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -92,6 +93,12 @@ export const router = createBrowserRouter([
     path: "/admin",
     errorElement: <Error />,
     element: <AdminLayout />,
-    children: [{ index: true, element: <AdminPage /> }],
+    children: [
+      { index: true, element: <AdminPage /> },
+      {
+        element: <CategoryDetails />,
+        path: "/admin/categories/:id",
+      },
+    ],
   },
 ]);
