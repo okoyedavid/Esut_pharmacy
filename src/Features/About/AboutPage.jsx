@@ -17,17 +17,16 @@ function AboutPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white py-4 dark:bg-gray-900">
+    <div className="min-h-screen  bg-white dark:bg-gray-900">
       <div className="relative">
-        <img
-          src="/Esut.png"
-          className="w-full h-72 object-cover rounded-t-xl"
-        />
+        <img src="/Esut.png" className="w-full h-72 object-cover" />
+
+        <div className="absolute inset-0 bg-black/40 to-transparent z-10" />
 
         <div className="absolute inset-0 flex items-center justify-center p-8">
           <div className="text-center">
             <motion.h1
-              className="text-2xl md:text-3xl lg:text-4xl mt-8 font-bold text-white mb-4"
+              className="text-2xl md:text-3xl relative z-11 lg:text-4xl mt-8 font-bold text-white mb-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}

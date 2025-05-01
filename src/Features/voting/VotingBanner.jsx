@@ -23,13 +23,13 @@ const VotingBanner = () => {
   }
 
   return (
-    <div className="relative h-[50vh]  bg-gradient-to-r from-blue-600 to-purple-600/25  text-white p-8 shadow-lg">
+    <div className="relative h-[50vh] py-8 flex flex-col items-center justify-center bg-gradient-to-r from-blue-600 to-purple-600/25  text-white shadow-lg">
       <img
         src="/award.jpg"
         className="absolute inset-0 h-full w-full -z-2 object-cover"
         alt=""
       />
-      <h2 className="sm:text-3xl text-2xl font-bold mb-2 mt-10 text-center">
+      <h2 className="sm:text-3xl text-2xl mt-10 font-bold text-center">
         {event.title}
       </h2>
       <p className="text-center mb-3 sm:mb-6">{event.description}</p>

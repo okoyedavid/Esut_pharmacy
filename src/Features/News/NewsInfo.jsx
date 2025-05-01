@@ -29,7 +29,7 @@ function NewsInfo() {
           <img
             src={update.image}
             alt={update.title}
-            className="w-full h-72 object-cover rounded-t-xl"
+            className="w-full h-72 object-cover"
           />
         </div>
 

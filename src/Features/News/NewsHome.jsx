@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import SearchNews from "./SearchNews";
-import NewsHeader from "./NewsHeader";
-import NewsGrid from "./NewsGrid";
-import { settingsvariants } from "../../utils/Constants";
-import Advertisements from "../../ui/Advertisements";
 import NewsProvider from "../../context/NewsProvider";
+import Advertisements from "../../ui/Advertisements";
+import Banner from "../../ui/Banner";
+import { settingsvariants } from "../../utils/Constants";
+import NewsGrid from "./NewsGrid";
+import SearchNews from "./SearchNews";
 
 const { containerVariants } = settingsvariants;
 
@@ -16,23 +16,26 @@ function NewsHome() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900  pt-18 px-2">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <motion.div
         ref={ref}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         variants={containerVariants}
-        className="max-w-6xl mx-auto"
       >
         {/* Header Section */}
-        <NewsHeader />
+        <Banner heading={"Campus Updates"}>
+          Stay informed about the latest news, events, and announcements
+        </Banner>
         {/* Search and Filter Section */}
-        <SearchNews />
-        <Advertisements />
-        {/* Updates Grid */}
-        <NewsProvider>
-          <NewsGrid />
-        </NewsProvider>
+        <div className="max-w-6xl mx-auto mt-6">
+          <SearchNews />
+          <Advertisements />
+          {/* Updates Grid */}
+          <NewsProvider>
+            <NewsGrid />
+          </NewsProvider>
+        </div>
       </motion.div>
     </div>
   );

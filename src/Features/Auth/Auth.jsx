@@ -8,11 +8,11 @@ function AuthPage() {
   const isSignup = searchParams.has("signup");
 
   return (
-    <div className="min-h-screen flex flex-col pt-5 md:flex-row bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <div className="min-h-screen flex flex-col md:flex-row bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
       {/* Left Side - Image */}
-      <div className="md:w-1/2 relative">
+      <div className="md:w-1/2 relative ">
         <div
-          className="h-48 md:h-full bg-cover bg-center"
+          className="h-60 md:h-full  bg-cover bg-center"
           style={{
             backgroundImage:
               'url("https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&q=80")',
@@ -21,7 +21,7 @@ function AuthPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-blue-800/90 flex items-center justify-center p-8">
             <div className="text-center">
               <motion.h1
-                className="text-2xl md:text-3xl lg:text-4xl mt-8 font-bold text-white mb-4"
+                className="text-2xl md:text-3xl lg:text-4xl mt-10 font-bold text-white mb-2"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}

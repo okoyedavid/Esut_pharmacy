@@ -33,7 +33,7 @@ function CreateAccount() {
     "absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 h-5 w-5";
   return (
     <motion.div
-      className="w-full max-w-md bg-white dark:bg-gray-800 p-8 rounded-lg"
+      className="w-full max-w-md bg-white dark:bg-gray-800 rounded-lg"
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6 }}

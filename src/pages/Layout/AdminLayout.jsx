@@ -1,8 +1,13 @@
 import { Award, Home, Trophy, Users } from "lucide-react";
 import { Link, Outlet } from "react-router-dom";
 import Modal from "../../ui/Modal";
+import { useEffect } from "react";
 
 function AdminLayout() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <Modal>
       <div className="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen font-sans transition-colors duration-200">

@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import SideBar from "../../Features/Dashboard/SideBar";
 import Header from "../../Features/Dashboard/Header";
 
 function DashboardLayout() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (

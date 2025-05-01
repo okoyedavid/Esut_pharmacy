@@ -21,6 +21,7 @@ const VotingList = () => {
       <h2 className="text-3xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 mb-8">
         Vote for {category} 2024-2025 Session
       </h2>
+
       <div className="grid lg:grid-cols-4  md:grid-cols-3 sm:grid-cols-2 grid-cols-1 transition-transform duration-500 ease-out">
         {contestants?.map((voter) => {
           return (
